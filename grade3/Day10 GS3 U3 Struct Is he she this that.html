@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pre-Starters Practice - 30 Questions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+        }
+        h1 {
+            color: #2c3e50;
+            text-align: center;
+            font-size: 24px;
+            margin-bottom: 25px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+        }
+        .section-title {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 8px;
+            font-size: 18px;
+            font-weight: bold;
+            margin-top: 30px;
+            margin-bottom: 15px;
+        }
+        .q-card {
+            background: #f9f9f9;
+            border-left: 5px solid #3498db;
+            padding: 15px;
+            margin-bottom: 15px;
+            border-radius: 0 8px 8px 0;
+        }
+        .q-text {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .options {
+            margin-bottom: 10px;
+        }
+        .options label {
+            display: block;
+            margin-bottom: 5px;
+            cursor: pointer;
+        }
+        input[type="text"], select {
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 15px;
+            margin-top: 5px;
+        }
+        .btn-check {
+            background-color: #2ecc71;
+            color: white;
+            border: none;
+            padding: 6px 14px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: 0.2s;
+        }
+        .btn-check:hover {
+            background-color: #27ae60;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            display: none;
+        }
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .feedback.wrong {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>ENGLISH PRACTICE FOR KIDS (PRE-STARTERS)</h1>
+
+    <!-- DẠNG 1 -->
+    <div class="section-title">PART 1: MULTIPLE CHOICE (Chọ⁠n đáp án đúng)</div>
+
+    <div class="q-card" id="qc1">
+        <div class="q-text">1. What's this? - It's ______ eraser.</div>
+        <div class="options">
+            <label><input type="radio" name="q1" value="A"> A. a</label>
+            <label><input type="radio" name="q1" value="B"> B. an</label>
+            <label><input type="radio" name="q1" value="C"> C. two</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(1, 'B', 'Từ \'eraser\' bắt đầu bằng nguyên âm \'e\' nên ta dùng mạo từ \'an\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb1"></div>
+    </div>
+
+    <div class="q-card" id="qc2">
+        <div class="q-text">2. What's that? - ______ is a book.</div>
+        <div class="options">
+            <label><input type="radio" name="q2" value="A"> A. That</label>
+            <label><input type="radio" name="q2" value="B"> B. This</label>
+            <label><input type="radio" name="q2" value="C"> C. It</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(2, 'A', 'Câu hỏi dùng \'that\' (kia) nên câu trả lời dùng \'That is...\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb2"></div>
+    </div>
+
+    <div class="q-card" id="qc3">
+        <div class="q-text">3. Is this a pen? - Yes, ______.</div>
+        <div class="options">
+            <label><input type="radio" name="q3" value="A"> A. it isn't</label>
+            <label><input type="radio" name="q3" value="B"> B. it is</label>
+            <label><input type="radio" name="q3" value="C"> C. is it</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(3, 'B', 'Câu hỏi \'Is this...?\' với vế đồng ý \'Yes\' đi kèm với \'it is\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb3"></div>
+    </div>
+
+    <div class="q-card" id="qc4">
+        <div class="q-text">4. Is that a ruler? - No, ______.</div>
+        <div class="options">
+            <label><input type="radio" name="q4" value="A"> A. it is</label>
+            <label><input type="radio" name="q4" value="B"> B. it not</label>
+            <label><input type="radio" name="q4" value="C"> C. it isn't</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(4, 'C', 'Câu trả lời phủ định \'No\' phải đi cùng với \'it isn\'t\' (is not).')">Kiểm tra</button>
+        <div class="feedback" id="fb4"></div>
+    </div>
+
+    <div class="q-card" id="qc5">
+        <div class="q-text">5. Is he a doctor? - Yes, ______.</div>
+        <div class="options">
+            <label><input type="radio" name="q5" value="A"> A. he is</label>
+            <label><input type="radio" name="q5" value="B"> B. she is</label>
+            <label><input type="radio" name="q5" value="C"> C. it is</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(5, 'A', 'Câu hỏi về nam giới \'Is he...?\' nên câu trả lời phải giữ nguyên chủ ngữ \'he is\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb5"></div>
+    </div>
+
+    <div class="q-card" id="qc6">
+        <div class="q-text">6. Is she a teacher? - No, ______.</div>
+        <div class="options">
+            <label><input type="radio" name="q6" value="A"> A. she is</label>
+            <label><input type="radio" name="q6" value="B"> B. she isn't</label>
+            <label><input type="radio" name="q6" value="C"> C. he isn't</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(6, 'B', 'Hỏi về nữ giới \'she\' và phủ định \'No\' -> trả lời \'she isn\'t\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb6"></div>
+    </div>
+
+    <div class="q-card" id="qc7">
+        <div class="q-text">7. Is it a dog? - Yes, ______.</div>
+        <div class="options">
+            <label><input type="radio" name="q7" value="A"> A. it isn't</label>
+            <label><input type="radio" name="q7" value="B"> B. is it</label>
+            <label><input type="radio" name="q7" value="C"> C. it is</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(7, 'C', 'Hỏi về con vật \'Is it...?\' trả lời khẳng định là \'Yes, it is.\'')">Kiểm tra</button>
+        <div class="feedback" id="fb7"></div>
+    </div>
+
+    <div class="q-card" id="qc8">
+        <div class="q-text">8. What's this? - It's ______ apple.</div>
+        <div class="options">
+            <label><input type="radio" name="q8" value="A"> A. a</label>
+            <label><input type="radio" name="q8" value="B"> B. an</label>
+            <label><input type="radio" name="q8" value="C"> C. the</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(8, 'B', 'Từ \'apple\' bắt đầu bằng nguyên âm \'a\' nên dùng mạo từ \'an\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb8"></div>
+    </div>
+
+    <!-- DẠNG 2 -->
+    <div class="section-title">PART 2: FILL IN THE BLANKS (Điền từ còn thiếu)</div>
+
+    <div class="q-card" id="qc9">
+        <div class="q-text">9. What's ______? - It's a pencil. (gợi ý: đây)</div>
+        <input type="text" id="q9" placeholder="Nhập từ...">
+        <button class="btn-check" onclick="checkFill(9, ['this'], 'Hỏi đồ vật ở gần dùng \'this\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb9"></div>
+    </div>
+
+    <div class="q-card" id="qc10">
+        <div class="q-text">10. What's ______? - It's a clock. (gợi ý: kia)</div>
+        <input type="text" id="q10" placeholder="Nhập từ...">
+        <button class="btn-check" onclick="checkFill(10, ['that'], 'Hỏi đồ vật ở xa dùng \'that\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb10"></div>
+    </div>
+
+    <div class="q-card" id="qc11">
+        <div class="q-text">11. ______ this an arm? - Yes, it is.</div>
+        <input type="text" id="q11" placeholder="Nhập từ...">
+        <button class="btn-check" onclick="checkFill(11, ['is'], 'Câu hỏi Yes/No với \'this\' phải đưa động từ to-be \'Is\' lên đầu.')">Kiểm tra</button>
+        <div class="feedback" id="fb11"></div>
+    </div>
+
+    <div class="q-card" id="qc12">
+        <div class="q-text">12. Is that a computer? - No, it ______.</div>
+        <input type="text" id="q12" placeholder="Nhập từ...">
+        <button class="btn-check" onclick="checkFill(12, ['isn\'t', 'is not'], 'Trả lời \'No\' đi kèm dạng phủ định \'isn\'t\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb12"></div>
+    </div>
+
+    <div class="q-card" id="qc13">
+        <div class="q-text">13. Is ______ a student? - Yes, he is.</div>
+        <input type="text" id="q13" placeholder="Nhập từ...">
+        <button class="btn-check" onclick="checkFill(13, ['he'], 'Câu trả lời là \'he is\' nên câu hỏi phải hỏi về \'he\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb13"></div>
+    </div>
+
+    <div class="q-card" id="qc14">
+        <div class="q-text">14. Is she British? - Yes, she ______.</div>
+        <input type="text" id="q14" placeholder="Nhập từ...">
+        <button class="btn-check" onclick="checkFill(14, ['is'], 'Đồng ý với câu hỏi To-be về \'she\', đáp án là \'is\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb14"></div>
+    </div>
+
+    <div class="q-card" id="qc15">
+        <div class="q-text">15. Is it a kangaroo? - No, it ______.</div>
+        <input type="text" id="q15" placeholder="Nhập từ...">
+        <button class="btn-check" onclick="checkFill(15, ['isn\'t', 'is not'], 'Đi cùng với \'No, it...\' là \'isn\'t\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb15"></div>
+    </div>
+
+    <div class="q-card" id="qc16">
+        <div class="q-text">16. What's this? - ______ is a desk.</div>
+        <input type="text" id="q16" placeholder="Nhập từ...">
+        <button class="btn-check" onclick="checkFill(16, ['this'], 'Có thể trả lời câu hỏi \'What\'s this?\' bằng cấu trúc \'This is...\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb16"></div>
+    </div>
+
+    <!-- DẠNG 3 -->
+    <div class="section-title">PART 3: DROP-DOWN MENU (Chọn từ thích hợp)</div>
+
+    <div class="q-card" id="qc17">
+        <div class="q-text">17. Is ______ a nurse? - Yes, she is.</div>
+        <select id="q17">
+            <option value="">-- Chọn --</option>
+            <option value="he">he</option>
+            <option value="she">she</option>
+            <option value="it">it</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(17, 'she', 'Vế trả lời dùng \'she\' (chỉ nữ) nên câu hỏi cũng dùng \'she\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb17"></div>
+    </div>
+
+    <div class="q-card" id="qc18">
+        <div class="q-text">18. Is it big? - Yes, ______ is.</div>
+        <select id="q18">
+            <option value="">-- Chọn --</option>
+            <option value="it">it</option>
+            <option value="this">this</option>
+            <option value="that">that</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(18, 'it', 'Câu hỏi bắt đầu với \'Is it...?\' thì câu trả lời dùng \'Yes, it is\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb18"></div>
+    </div>
+
+    <div class="q-card" id="qc19">
+        <div class="q-text">19. Is this ______ umbrella?</div>
+        <select id="q19">
+            <option value="">-- Chọn --</option>
+            <option value="a">a</option>
+            <option value="an">an</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(19, 'an', '\'umbrella\' bắt đầu bằng nguyên âm \'u\' nên ta dùng mạo từ \'an\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb19"></div>
+    </div>
+
+    <div class="q-card" id="qc20">
+        <div class="q-text">20. What's that? - ______ a school bag.</div>
+        <select id="q20">
+            <option value="">-- Chọn --</option>
+            <option value="It's">It's</option>
+            <option value="Is it">Is it</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(20, 'It\'s', 'Để trả lời cho câu hỏi \'What\'s that?\', ta dùng \'It\'s a...\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb20"></div>
+    </div>
+
+    <div class="q-card" id="qc21">
+        <div class="q-text">21. Is he Vietnamese? - No, he ______.</div>
+        <select id="q21">
+            <option value="">-- Chọn --</option>
+            <option value="is">is</option>
+            <option value="isn't">isn't</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(21, 'isn\'t', 'Phủ định \'No\' đi kèm với động từ dạng \'isn\'t\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb21"></div>
+    </div>
+
+    <div class="q-card" id="qc22">
+        <div class="q-text">22. Is that a cat? - Yes, ______ is.</div>
+        <select id="q22">
+            <option value="">-- Chọn --</option>
+            <option value="it">it</option>
+            <option value="that">that</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(22, 'it', 'Hỏi \'Is that...?\' thì câu trả lời Yes/No ngắn gọn luôn thay thế bằng đại từ \'it\'.')">Kiểm tra</button>
+        <div class="feedback" id="fb22"></div>
+    </div>
+
+    <div class="q-card" id="qc23">
+        <div class="q-text">23. Is she a student? - No, she ______.</div>
+        <select id="q23">
+            <option value="">-- Chọn --</option>
+            <option value="is">is</option>
+            <option value="isn't">isn't</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(23, 'isn\'t', '\'No, she isn\'t\' là vế phủ định chuẩn ngữ pháp.')">Kiểm tra</button>
+        <div class="feedback" id="fb23"></div>
+    </div>
+
+    <!-- DẠNG 4 -->
+    <div class="section-title">PART 4: UNSCRAMBLE WORDS (Sắp xếp từ thành câu)</div>
+
+    <div class="q-card" id="qc24">
+        <div class="q-text">24. Sắp xếp: [ is / What / ? / this ]</div>
+        <input type="text" id="q24" placeholder="Viết lại câu hoàn chỉnh...">
+        <button class="btn-check" onclick="checkUnscramble(24, 'What is this?', 'Cấu trúc hỏi đây là cái gì: What is this?')">Kiểm tra</button>
+        <div class="feedback" id="fb24"></div>
+    </div>
+
+    <div class="q-card" id="qc25">
+        <div class="q-text">25. Sắp xếp: [ a / It's / pen / . ]</div>
+        <input type="text" id="q25" placeholder="Viết lại câu hoàn chỉnh...">
+        <button class="btn-check" onclick="checkUnscramble(25, 'It\'s a pen.', 'Cấu trúc trả lời đồ vật: It\'s a pen.')">Kiểm tra</button>
+        <div class="feedback" id="fb25"></div>
+    </div>
+
+    <div class="q-card" id="qc26">
+        <div class="q-text">26. Sắp xếp: [ is / That / book / a / . ]</div>
+        <input type="text" id="q26" placeholder="Viết lại câu hoàn chỉnh...">
+        <button class="btn-check" onclick="checkUnscramble(26, 'That is a book.', 'Cấu trúc khẳng định vật ở xa: That is a book.')">Kiểm tra</button>
+        <div class="feedback" id="fb26"></div>
+    </div>
+
+    <div class="q-card" id="qc27">
+        <div class="q-text">27. Sắp xếp: [ this / Is / an / apple / ? ]</div>
+        <input type="text" id="q27" placeholder="Viết lại câu hoàn chỉnh...">
+        <button class="btn-check" onclick="checkUnscramble(27, 'Is this an apple?', 'Câu hỏi nghi vấn đưa \'Is\' lên đầu: Is this an apple?')">Kiểm tra</button>
+        <div class="feedback" id="fb27"></div>
+    </div>
+
+    <div class="q-card" id="qc28">
+        <div class="q-text">28. Sắp xếp: [ is / he / a / doctor / ? / Is ]</div>
+        <input type="text" id="q28" placeholder="Viết lại câu hoàn chỉnh...">
+        <button class="btn-check" onclick="checkUnscramble(28, 'Is he a doctor?', 'Cấu trúc hỏi nghề nghiệp nam giới: Is he a doctor?')">Kiểm tra</button>
+        <div class="feedback" id="fb28"></div>
+    </div>
+
+    <div class="q-card" id="qc29">
+        <div class="q-text">29. Sắp xếp: [ isn't / No / it / , / . ]</div>
+        <input type="text" id="q29" placeholder="Viết lại câu hoàn chỉnh...">
+        <button class="btn-check" onclick="checkUnscramble(29, 'No, it isn\'t.', 'Trả lời phủ định chuẩn: No, it isn\'t.')">Kiểm tra</button>
+        <div class="feedback" id="fb29"></div>
+    </div>
+
+    <div class="q-card" id="qc30">
+        <div class="q-text">30. Sắp xếp: [ is / Yes / she / , / . ]</div>
+        <input type="text" id="q30" placeholder="Viết lại câu hoàn chỉnh...">
+        <button class="btn-check" onclick="checkUnscramble(30, 'Yes, she is.', 'Trả lời khẳng định cho nữ giới: Yes, she is.')">Kiểm tra</button>
+        <div class="feedback" id="fb30"></div>
+    </div>
+
+</div>
+
+<script>
+    // Hàm hiển thị kết quả
+    function renderFeedback(qNum, isCorrect, correctAns, exp) {
+        const fb = document.getElementById('fb' + qNum);
+        fb.style.display = 'block';
+        if (isCorrect) {
+            fb.className = 'feedback correct';
+            fb.innerHTML = '<b>🎉 Đúng rồi! Giỏi lắm!</b><br><i>' + exp + '</i>';
+        } else {
+            fb.className = 'feedback wrong';
+            fb.innerHTML = '<b>❌ Chưa chính xác rồi!</b><br>Đáp án đúng là: <b>' + correctAns + '</b><br><i>Giải thích: ' + exp + '</i>';
+        }
+    }
+
+    // Kiểm tra Dạng 1
+    function checkMC(qNum, correctVal, exp) {
+        const selected = document.querySelector('input[name="q' + qNum + '"]:checked');
+        if (!selected) {
+            alert('Em hãy chọn một đáp án trước nhé!');
+            return;
+        }
+        renderFeedback(qNum, selected.value === correctVal, correctVal, exp);
+    }
+
+    // Kiểm tra Dạng 2
+    function checkFill(qNum, validArray, exp) {
+        const val = document.getElementById('q' + qNum).value.trim().toLowerCase();
+        if (val === '') {
+            alert('Em hãy nhập từ còn thiếu vào ô nhé!');
+            return;
+        }
+        const isCorrect = validArray.some(ans => ans.toLowerCase() === val);
+        renderFeedback(qNum, isCorrect, validArray[0], exp);
+    }
+
+    // Kiểm tra Dạng 3
+    function checkSelect(qNum, correctVal, exp) {
+        const val = document.getElementById('q' + qNum).value;
+        if (val === '') {
+            alert('Em hãy chọn một từ trong danh sách nhé!');
+            return;
+        }
+        renderFeedback(qNum, val === correctVal, correctVal, exp);
+    }
+
+    // Kiểm tra Dạng 4
+    function checkUnscramble(qNum, correctSentence, exp) {
+        const val = document.getElementById('q' + qNum).value.trim();
+        if (val === '') {
+            alert('Em hãy viết lại câu nhé!');
+            return;
+        }
+        // Làm sạch chuỗi để so sánh linh hoạt (bỏ bớt khoảng trắng thừa và dấu câu nếu hs quên)
+        const cleanUser = val.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const cleanTarget = correctSentence.toLowerCase().replace(/[^a-z0-9]/g, '');
+        
+        renderFeedback(qNum, cleanUser === cleanTarget, correctSentence, exp);
+    }
+</script>
+
+</body>
+</html>
