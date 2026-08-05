@@ -1,0 +1,782 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport chuẩn cho di động chống zoom lệch -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Bài Tập Từ Vựng - Mobile Friendly</title>
+    <style>
+        /* CSS Reset & Cơ bản cho Di Động */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* Bỏ khung xanh khi chạm trên Safari/Android */
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 12px;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+        h1 {
+            text-align: center;
+            color: #1e3c72;
+            font-size: 20px;
+            border-bottom: 3px solid #2a5298;
+            padding-bottom: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%);
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        .q-card {
+            background: #fdfdfd;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #2a5298;
+            padding: 14px;
+            margin-bottom: 14px;
+            border-radius: 8px;
+        }
+        .q-text {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a202c;
+        }
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            padding: 6px 8px;
+            background: #f8fafc;
+            border-radius: 6px;
+            border: 1px solid #edf2f7;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+        /* Cấu hình font-size >= 16px chống tự động zoom trên iPhone */
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px; /* Bắt buộc 16px cho iOS Safari */
+            margin-top: 4px;
+            margin-bottom: 6px;
+            background-color: #fff;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        select {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            padding-right: 30px;
+        }
+        .btn-check {
+            width: 100%; /* Nút bấm tràn ngang trên di động để dễ bấm */
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 6px;
+            transition: background-color 0.2s;
+        }
+        .btn-check:active {
+            background-color: #1e7e34;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+            line-height: 1.4;
+        }
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .feedback.wrong {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .final-summary {
+            margin-top: 30px;
+            padding: 20px 15px;
+            background: #eef6ff;
+            border: 2px dashed #2a5298;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .btn-submit-all {
+            width: 100%;
+            background-color: #1e3c72;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #scoreBoard {
+            font-size: 18px;
+            font-weight: bold;
+            color: #1e3c72;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>BÀI TẬP TỪ VỰNG (55 CÂU)</h1>
+
+    <!-- PART 1: TRỌNG ÂM -->
+    <div class="section-title">PART 1: STRESS PATTERNS (TRỌNG ÂM)</div>
+
+    <div class="q-card">
+        <div class="q-text">1. Choose the word that has a different stress pattern:</div>
+        <div class="options">
+            <label><input type="radio" name="q1" value="A"> A. Neighbourhood</label>
+            <label><input type="radio" name="q1" value="B"> B. Countryside</label>
+            <label><input type="radio" name="q1" value="C"> C. Prevent</label>
+            <label><input type="radio" name="q1" value="D"> D. Vitamin</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(1, 'C', 'Prevent /prɪˈvent/ nhấn âm 2; các từ còn lại nhấn âm 1.')">Kiểm tra câu 1</button>
+        <div class="feedback" id="fb1"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">2. Choose the word that has a different stress pattern:</div>
+        <div class="options">
+            <label><input type="radio" name="q2" value="A"> A. Problem</label>
+            <label><input type="radio" name="q2" value="B"> B. Habit</label>
+            <label><input type="radio" name="q2" value="C"> C. Avoid</label>
+            <label><input type="radio" name="q2" value="D"> D. Energy</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(2, 'C', 'Avoid /əˈvɔɪd/ nhấn âm 2; các từ còn lại nhấn âm 1.')">Kiểm tra câu 2</button>
+        <div class="feedback" id="fb2"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">3. Choose the word that has a different stress pattern:</div>
+        <div class="options">
+            <label><input type="radio" name="q3" value="A"> A. Vegetarian</label>
+            <label><input type="radio" name="q3" value="B"> B. Exercise</label>
+            <label><input type="radio" name="q3" value="C"> C. Balanced</label>
+            <label><input type="radio" name="q3" value="D"> D. Popular</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(3, 'A', 'Vegetarian /ˌvedʒəˈteəriən/ nhấn âm 3; các từ còn lại nhấn âm 1.')">Kiểm tra câu 3</button>
+        <div class="feedback" id="fb3"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">4. Choose the word that has a different stress pattern:</div>
+        <div class="options">
+            <label><input type="radio" name="q4" value="A"> A. Disease</label>
+            <label><input type="radio" name="q4" value="B"> B. Active</label>
+            <label><input type="radio" name="q4" value="C"> C. Simple</label>
+            <label><input type="radio" name="q4" value="D"> D. Regular</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(4, 'A', 'Disease /dɪˈziːz/ nhấn âm 2; các từ còn lại nhấn âm 1.')">Kiểm tra câu 4</button>
+        <div class="feedback" id="fb4"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">5. Choose the word that has a different stress pattern:</div>
+        <div class="options">
+            <label><input type="radio" name="q5" value="A"> A. Important</label>
+            <label><input type="radio" name="q5" value="B"> B. Serious</label>
+            <label><input type="radio" name="q5" value="C"> C. Sunburn</label>
+            <label><input type="radio" name="q5" value="D"> D. Suncream</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(5, 'A', 'Important /ɪmˈpɔːtnt/ nhấn âm 2; các từ còn lại nhấn âm 1.')">Kiểm tra câu 5</button>
+        <div class="feedback" id="fb5"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">6. Choose the word that has a different stress pattern:</div>
+        <div class="options">
+            <label><input type="radio" name="q6" value="A"> A. Contain</label>
+            <label><input type="radio" name="q6" value="B"> B. Affect</label>
+            <label><input type="radio" name="q6" value="C"> C. Quiet</label>
+            <label><input type="radio" name="q6" value="D"> D. Prevent</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(6, 'C', 'Quiet /ˈkwaɪət/ nhấn âm 1; các từ còn lại nhấn âm 2.')">Kiểm tra câu 6</button>
+        <div class="feedback" id="fb6"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">7. Choose the word that has a different stress pattern:</div>
+        <div class="options">
+            <label><input type="radio" name="q7" value="A"> A. Toothache</label>
+            <label><input type="radio" name="q7" value="B"> B. Headache</label>
+            <label><input type="radio" name="q7" value="C"> C. Earache</label>
+            <label><input type="radio" name="q7" value="D"> D. Sore throat</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(7, 'D', 'Sore throat trọng âm rơi vào từ throat; các từ còn lại nhấn âm 1.')">Kiểm tra câu 7</button>
+        <div class="feedback" id="fb7"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">8. Choose the word that has a different stress pattern:</div>
+        <div class="options">
+            <label><input type="radio" name="q8" value="A"> A. Interesting</label>
+            <label><input type="radio" name="q8" value="B"> B. Lunchbox</label>
+            <label><input type="radio" name="q8" value="C"> C. Diet</label>
+            <label><input type="radio" name="q8" value="D"> D. Disease</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(8, 'D', 'Disease /dɪˈziːz/ nhấn âm 2; các từ còn lại nhấn âm 1.')">Kiểm tra câu 8</button>
+        <div class="feedback" id="fb8"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">9. Which word is stressed on the SECOND syllable?</div>
+        <div class="options">
+            <label><input type="radio" name="q9" value="A"> A. Cause</label>
+            <label><input type="radio" name="q9" value="B"> B. Affect</label>
+            <label><input type="radio" name="q9" value="C"> C. Touch</label>
+            <label><input type="radio" name="q9" value="D"> D. Health</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(9, 'B', 'Affect /əˈfekt/ nhấn âm thứ 2.')">Kiểm tra câu 9</button>
+        <div class="feedback" id="fb9"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">10. Which word is stressed on the FIRST syllable?</div>
+        <div class="options">
+            <label><input type="radio" name="q10" value="A"> A. Contain</label>
+            <label><input type="radio" name="q10" value="B"> B. Avoid</label>
+            <label><input type="radio" name="q10" value="C"> C. Balanced</label>
+            <label><input type="radio" name="q10" value="D"> D. Prevent</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(10, 'C', 'Balanced /ˈbælənst/ nhấn âm 1.')">Kiểm tra câu 10</button>
+        <div class="feedback" id="fb10"></div>
+    </div>
+
+
+    <!-- PART 2: PHIÊN ÂM IPA -->
+    <div class="section-title">PART 2: PHONETICS & IPA (PHIÊN ÂM)</div>
+
+    <div class="q-card">
+        <div class="q-text">11. Which word has the IPA /'neɪbəhʊd/?</div>
+        <div class="options">
+            <label><input type="radio" name="q11" value="A"> A. Countryside</label>
+            <label><input type="radio" name="q11" value="B"> B. Neighbourhood</label>
+            <label><input type="radio" name="q11" value="C"> C. Vegetarian</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(11, 'B', '/\'neɪbəhʊd/ là phiên âm của Neighbourhood.')">Kiểm tra câu 11</button>
+        <div class="feedback" id="fb11"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">12. Identify the word with the IPA /'kʌntrisaɪd/:</div>
+        <div class="options">
+            <label><input type="radio" name="q12" value="A"> A. Countryside</label>
+            <label><input type="radio" name="q12" value="B"> B. Suncream</label>
+            <label><input type="radio" name="q12" value="C"> C. Exercise</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(12, 'A', '/\'kʌntrisaɪd/ là phiên âm của Countryside.')">Kiểm tra câu 12</button>
+        <div class="feedback" id="fb12"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">13. What is the IPA notation for "Vegetarian"?</div>
+        <div class="options">
+            <label><input type="radio" name="q13" value="A"> A. /vedʒə'teəriən/</label>
+            <label><input type="radio" name="q13" value="B"> B. /'vɪtəmɪn/</label>
+            <label><input type="radio" name="q13" value="C"> C. /'pɒpjələ(r)/</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(13, 'A', 'Vegetarian có phiên âm là /vedʒə\'teəriən/.')">Kiểm tra câu 13</button>
+        <div class="feedback" id="fb13"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">14. Choose the word that corresponds to /'sʌnbɜːn/:</div>
+        <div class="options">
+            <label><input type="radio" name="q14" value="A"> A. Suncream</label>
+            <label><input type="radio" name="q14" value="B"> B. Sunburn</label>
+            <label><input type="radio" name="q14" value="C"> C. Stomach ache</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(14, 'B', '/\'sʌnbɜːn/ là phiên âm của Sunburn.')">Kiểm tra câu 14</button>
+        <div class="feedback" id="fb14"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">15. What is the correct IPA transcription of "Disease"?</div>
+        <div class="options">
+            <label><input type="radio" name="q15" value="A"> A. /dɪ'ziːz/</label>
+            <label><input type="radio" name="q15" value="B"> B. /'daɪət/</label>
+            <label><input type="radio" name="q15" value="C"> C. /'enədʒi/</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(15, 'A', 'Disease có phiên âm chuẩn là /dɪ\'ziːz/.')">Kiểm tra câu 15</button>
+        <div class="feedback" id="fb15"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">16. The IPA /'stʌmək eɪk/ represents which word?</div>
+        <div class="options">
+            <label><input type="radio" name="q16" value="A"> A. Toothache</label>
+            <label><input type="radio" name="q16" value="B"> B. Headache</label>
+            <label><input type="radio" name="q16" value="C"> C. Stomach ache</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(16, 'C', '/\'stʌmək eɪk/ là Stomach ache (đau bụng).')">Kiểm tra câu 16</button>
+        <div class="feedback" id="fb16"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">17. Which word is pronounced as /'kʊkɪŋ ɔɪl/?</div>
+        <div class="options">
+            <label><input type="radio" name="q17" value="A"> A. Fresh air</label>
+            <label><input type="radio" name="q17" value="B"> B. Soft drinks</label>
+            <label><input type="radio" name="q17" value="C"> C. Cooking oil</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(17, 'C', '/\'kʊkɪŋ ɔɪl/ đọc là Cooking oil.')">Kiểm tra câu 17</button>
+        <div class="feedback" id="fb17"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">18. The IPA /'ɪntrestɪŋ/ belongs to which word?</div>
+        <div class="options">
+            <label><input type="radio" name="q18" value="A"> A. Important</label>
+            <label><input type="radio" name="q18" value="B"> B. Interesting</label>
+            <label><input type="radio" name="q18" value="C"> C. Popular</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(18, 'B', '/\'ɪntrestɪŋ/ là tính từ Interesting.')">Kiểm tra câu 18</button>
+        <div class="feedback" id="fb18"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">19. Which word has the IPA /'kwaɪət/?</div>
+        <div class="options">
+            <label><input type="radio" name="q19" value="A"> A. Active</label>
+            <label><input type="radio" name="q19" value="B"> B. Simple</label>
+            <label><input type="radio" name="q19" value="C"> C. Quiet</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(19, 'C', '/\'kwaɪət/ là phiên âm của Quiet (yên tĩnh).')">Kiểm tra câu 19</button>
+        <div class="feedback" id="fb19"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">20. What is the IPA for "Air pollution"?</div>
+        <div class="options">
+            <label><input type="radio" name="q20" value="A"> A. /eə(r) pə'luːʃn/</label>
+            <label><input type="radio" name="q20" value="B"> B. /'pʌblɪk pleɪs/</label>
+            <label><input type="radio" name="q20" value="C"> C. /spɔːt 'sentə(r)/</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(20, 'A', 'Air pollution có phiên âm là /eə(r) pə\'luːʃn/.')">Kiểm tra câu 20</button>
+        <div class="feedback" id="fb20"></div>
+    </div>
+
+
+    <!-- PART 3: TỪ VỰNG ANH - VIỆT -->
+    <div class="section-title">PART 3: ENGLISH TO VIETNAMESE (ANH - VIỆT)</div>
+
+    <div class="q-card">
+        <div class="q-text">21. "Balanced diet" nghĩa tiếng Việt là gì?</div>
+        <select id="q21">
+            <option value="">-- Chọn đáp án --</option>
+            <option value="Khẩu phần ăn cân bằng">Khẩu phần ăn cân bằng</option>
+            <option value="Đồ uống có ga">Đồ uống có ga</option>
+            <option value="Bị cháy nắng">Bị cháy nắng</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(21, 'Khẩu phần ăn cân bằng', 'Balanced diet = Khẩu phần ăn cân bằng.')">Kiểm tra câu 21</button>
+        <div class="feedback" id="fb21"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">22. "Sore throat" nghĩa tiếng Việt là gì?</div>
+        <select id="q22">
+            <option value="">-- Chọn đáp án --</option>
+            <option value="Đau răng">Đau răng</option>
+            <option value="Đau họng">Đau họng</option>
+            <option value="Đau tai">Đau tai</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(22, 'Đau họng', 'Sore throat /sɔː(r) θrəʊt/ = Đau họng.')">Kiểm tra câu 22</button>
+        <div class="feedback" id="fb22"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">23. Từ "Prevent" mang nghĩa là gì?</div>
+        <select id="q23">
+            <option value="">-- Chọn đáp án --</option>
+            <option value="Gây ra">Gây ra</option>
+            <option value="Né tránh">Né tránh</option>
+            <option value="Ngăn ngừa">Ngăn ngừa</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(23, 'Ngăn ngừa', 'Prevent (v) = Ngăn ngừa, phòng ngừa.')">Kiểm tra câu 23</button>
+        <div class="feedback" id="fb23"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">24. "Keep fit" có nghĩa là gì?</div>
+        <select id="q24">
+            <option value="">-- Chọn đáp án --</option>
+            <option value="Giữ dáng / Giữ cho cơ thể khỏe mạnh">Giữ dáng / Giữ cho cơ thể khỏe mạnh</option>
+            <option value="Tăng cân">Tăng cân</option>
+            <option value="Chạy bộ">Chạy bộ</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(24, 'Giữ dáng / Giữ cho cơ thể khỏe mạnh', 'Keep fit = Giữ dáng / Giữ cho cơ thể khỏe mạnh.')">Kiểm tra câu 24</button>
+        <div class="feedback" id="fb24"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">25. Cụm từ "Put on weight" có nghĩa là gì?</div>
+        <select id="q25">
+            <option value="">-- Chọn đáp án --</option>
+            <option value="Giảm cân">Giảm cân</option>
+            <option value="Tăng cân">Tăng cân</option>
+            <option value="Bị sốt">Bị sốt</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(25, 'Tăng cân', 'Put on weight = Tăng cân.')">Kiểm tra câu 25</button>
+        <div class="feedback" id="fb25"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">26. Từ "Contain" mang nghĩa là gì?</div>
+        <select id="q26">
+            <option value="">-- Chọn đáp án --</option>
+            <option value="Bao gồm, chứa đựng">Bao gồm, chứa đựng</option>
+            <option value="Chạm, sờ">Chạm, sờ</option>
+            <option value="Tác động, ảnh hưởng">Tác động, ảnh hưởng</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(26, 'Bao gồm, chứa đựng', 'Contain (v) = Bao gồm, chứa đựng.')">Kiểm tra câu 26</button>
+        <div class="feedback" id="fb26"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">27. Cụm từ "Outdoor activity" có nghĩa là gì?</div>
+        <select id="q27">
+            <option value="">-- Chọn đáp án --</option>
+            <option value="Hoạt động ngoài trời">Hoạt động ngoài trời</option>
+            <option value="Nơi công cộng">Nơi công cộng</option>
+            <option value="Trung tâm thể thao">Trung tâm thể thao</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(27, 'Hoạt động ngoài trời', 'Outdoor activity = Hoạt động ngoài trời.')">Kiểm tra câu 27</button>
+        <div class="feedback" id="fb27"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">28. Từ "Suncream" mang nghĩa là gì?</div>
+        <select id="q28">
+            <option value="">-- Chọn đáp án --</option>
+            <option value="Kem chống nắng">Kem chống nắng</option>
+            <option value="Vết cháy nắng">Vết cháy nắng</option>
+            <option value="Dầu ăn">Dầu ăn</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(28, 'Kem chống nắng', 'Suncream = Kem chống nắng.')">Kiểm tra câu 28</button>
+        <div class="feedback" id="fb28"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">29. "Lunchbox" dịch sang tiếng Việt là gì?</div>
+        <select id="q29">
+            <option value="">-- Chọn đáp án --</option>
+            <option value="Hộp đựng đồ ăn trưa">Hộp đựng đồ ăn trưa</option>
+            <option value="Bữa ăn sáng">Bữa ăn sáng</option>
+            <option value="Mụn / Nốt đỏ">Mụn / Nốt đỏ</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(29, 'Hộp đựng đồ ăn trưa', 'Lunchbox = Hộp đựng đồ ăn trưa.')">Kiểm tra câu 29</button>
+        <div class="feedback" id="fb29"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">30. "Red spot" dịch sang tiếng Việt là gì?</div>
+        <select id="q30">
+            <option value="">-- Chọn đáp án --</option>
+            <option value="Mụn / Nốt đỏ">Mụn / Nốt đỏ</option>
+            <option value="Chấn thương chân">Chấn thương chân</option>
+            <option value="Gãy chân">Gãy chân</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(30, 'Mụn / Nốt đỏ', 'Red spot = Mụn / Nốt đỏ.')">Kiểm tra câu 30</button>
+        <div class="feedback" id="fb30"></div>
+    </div>
+
+
+    <!-- PART 4: TỪ VỰNG VIỆT - ANH -->
+    <div class="section-title">PART 4: VIETNAMESE TO ENGLISH (VIỆT - ANH)</div>
+
+    <div class="q-card">
+        <div class="q-text">31. "Người ăn chay" tiếng Anh là gì?</div>
+        <input type="text" id="q31" placeholder="Nhập từ tiếng Anh..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(31, ['Vegetarian'], 'Người ăn chay = Vegetarian.')">Kiểm tra câu 31</button>
+        <div class="feedback" id="fb31"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">32. "Ô nhiễm không khí" tiếng Anh là gì?</div>
+        <input type="text" id="q32" placeholder="Nhập cụm từ tiếng Anh..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(32, ['Air pollution'], 'Ô nhiễm không khí = Air pollution.')">Kiểm tra câu 32</button>
+        <div class="feedback" id="fb32"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">33. "Nơi công cộng" tiếng Anh là gì?</div>
+        <input type="text" id="q33" placeholder="Nhập cụm từ tiếng Anh..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(33, ['Public place', 'Public places'], 'Nơi công cộng = Public place.')">Kiểm tra câu 33</button>
+        <div class="feedback" id="fb33"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">34. Động từ "Chèo thuyền" là gì?</div>
+        <input type="text" id="q34" placeholder="Nhập động từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(34, ['Boat'], 'Chèo thuyền (động từ) = Boat.')">Kiểm tra câu 34</button>
+        <div class="feedback" id="fb34"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">35. "Đau răng" tiếng Anh là gì?</div>
+        <input type="text" id="q35" placeholder="Nhập từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(35, ['Toothache'], 'Đau răng = Toothache.')">Kiểm tra câu 35</button>
+        <div class="feedback" id="fb35"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">36. Cụm từ "Đạp xe" trong danh sách là gì?</div>
+        <input type="text" id="q36" placeholder="Nhập cụm từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(36, ['Go cycling'], 'Đạp xe = Go cycling.')">Kiểm tra câu 36</button>
+        <div class="feedback" id="fb36"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">37. "Nước ngọt / Đồ uống có ga" là gì?</div>
+        <input type="text" id="q37" placeholder="Nhập cụm từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(37, ['Soft drinks', 'Soft drink'], 'Đồ uống có ga = Soft drinks.')">Kiểm tra câu 37</button>
+        <div class="feedback" id="fb37"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">38. Danh từ "Sức khỏe" tiếng Anh là gì?</div>
+        <input type="text" id="q38" placeholder="Nhập từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(38, ['Health'], 'Sức khỏe = Health.')">Kiểm tra câu 38</button>
+        <div class="feedback" id="fb38"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">39. Danh từ "Thói quen" tiếng Anh là gì?</div>
+        <input type="text" id="q39" placeholder="Nhập từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(39, ['Habit'], 'Thói quen = Habit.')">Kiểm tra câu 39</button>
+        <div class="feedback" id="fb39"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">40. Cụm từ "Gãy chân" tiếng Anh là gì?</div>
+        <input type="text" id="q40" placeholder="Nhập cụm từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(40, ['Broken leg'], 'Gãy chân = Broken leg.')">Kiểm tra câu 40</button>
+        <div class="feedback" id="fb40"></div>
+    </div>
+
+
+    <!-- PART 5: GẮN TỪ VỰNG VÀO CÂU -->
+    <div class="section-title">PART 5: CONTEXTUAL USAGE (ĐIỀN TỪ VÀO CÂU)</div>
+
+    <div class="q-card">
+        <div class="q-text">41. You should wear ______ when you go to the beach to protect your skin.</div>
+        <input type="text" id="q41" placeholder="Nhập từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(41, ['suncream'], 'Điền \'suncream\' (kem chống nắng).')">Kiểm tra câu 41</button>
+        <div class="feedback" id="fb41"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">42. Staying out under the hot sun for too long can cause ______.</div>
+        <input type="text" id="q42" placeholder="Nhập từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(42, ['sunburn', 'get sunburn'], 'Nắng nóng kéo dài gây ra \'sunburn\' (cháy nắng).')">Kiểm tra câu 42</button>
+        <div class="feedback" id="fb42"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">43. My brother is a ______. He never eats meat or fish.</div>
+        <input type="text" id="q43" placeholder="Nhập từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(43, ['vegetarian'], 'Người không ăn thịt cá là \'vegetarian\' (người ăn chay).')">Kiểm tra câu 43</button>
+        <div class="feedback" id="fb43"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">44. Eating too much fast food can ______ you to put on weight quickly.</div>
+        <input type="text" id="q44" placeholder="Nhập động từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(44, ['cause'], 'Động từ \'cause\' (gây ra/làm cho).')">Kiểm tra câu 44</button>
+        <div class="feedback" id="fb44"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">45. Fresh fruits and vegetables ______ many vitamins and minerals.</div>
+        <input type="text" id="q45" placeholder="Nhập động từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(45, ['contain'], 'Động từ \'contain\' (chứa đựng/bao gồm).')">Kiểm tra câu 45</button>
+        <div class="feedback" id="fb45"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">46. Doing morning ______ every day is very good for your health.</div>
+        <input type="text" id="q46" placeholder="Nhập từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(46, ['exercise'], 'Doing morning exercise = Tập thể dục buổi sáng.')">Kiểm tra câu 46</button>
+        <div class="feedback" id="fb46"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">47. Don\'t ______ dirty hands on your eyes to avoid infections.</div>
+        <input type="text" id="q47" placeholder="Nhập động từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(47, ['touch'], 'Touch = Chạm, sờ.')">Kiểm tra câu 47</button>
+        <div class="feedback" id="fb47"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">48. Washing hands regularly helps to ______ the spread of diseases.</div>
+        <input type="text" id="q48" placeholder="Nhập động từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(48, ['prevent'], 'Prevent = Ngăn ngừa.')">Kiểm tra câu 48</button>
+        <div class="feedback" id="fb48"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">49. She goes to the local ______ to practice playing badminton.</div>
+        <input type="text" id="q49" placeholder="Nhập cụm từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(49, ['sports center', 'sports centre'], 'Sports center = Trung tâm thể thao.')">Kiểm tra câu 49</button>
+        <div class="feedback" id="fb49"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">50. You should drink plenty of water and avoid drinking too many ______.</div>
+        <input type="text" id="q50" placeholder="Nhập cụm từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(50, ['soft drinks'], 'Soft drinks = Đồ uống có ga.')">Kiểm tra câu 50</button>
+        <div class="feedback" id="fb50"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">51. If you eat too much candy, you will get a severe ______.</div>
+        <input type="text" id="q51" placeholder="Nhập từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(51, ['toothache'], 'Toothache = Đau răng.')">Kiểm tra câu 51</button>
+        <div class="feedback" id="fb51"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">52. Breathing in polluted air will negatively ______ your lungs.</div>
+        <input type="text" id="q52" placeholder="Nhập động từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(52, ['affect'], 'Affect (v) = Tác động, ảnh hưởng.')">Kiểm tra câu 52</button>
+        <div class="feedback" id="fb52"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">53. Going to bed early and waking up early is a healthy ______.</div>
+        <input type="text" id="q53" placeholder="Nhập từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(53, ['habit'], 'Habit = Thói quen.')">Kiểm tra câu 53</button>
+        <div class="feedback" id="fb53"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">54. Playing football is a very ______ outdoor activity among students.</div>
+        <input type="text" id="q54" placeholder="Nhập tính từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(54, ['popular'], 'Popular (adj) = Phổ biến, được ưa thích.')">Kiểm tra câu 54</button>
+        <div class="feedback" id="fb54"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">55. Always remember to ______ before going to school in the morning.</div>
+        <input type="text" id="q55" placeholder="Nhập cụm động từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(55, ['eat breakfast'], 'Eat breakfast = Ăn sáng.')">Kiểm tra câu 55</button>
+        <div class="feedback" id="fb55"></div>
+    </div>
+
+
+    <!-- TỔNG KẾT ĐIỂM -->
+    <div class="final-summary">
+        <h2>HOÀN THÀNH BÀI TẬP</h2>
+        <p style="font-size: 14px;">Bấm nút bên dưới để xem kết quả toàn bài:</p>
+        <button class="btn-submit-all" onclick="calculateTotalScore()">TỔNG KẾT ĐIỂM SỐ</button>
+        <div id="scoreBoard"></div>
+    </div>
+
+</div>
+
+<script>
+    // Mảng lưu trạng thái làm đúng/sai của 55 câu
+    let scoreTrack = new Array(56).fill(0);
+
+    function renderFeedback(qNum, isCorrect, correctAns, exp) {
+        const fb = document.getElementById('fb' + qNum);
+        fb.style.display = 'block';
+        if (isCorrect) {
+            fb.className = 'feedback correct';
+            fb.innerHTML = '<b>🎉 Chính xác!</b><br><i>' + exp + '</i>';
+            scoreTrack[qNum] = 1;
+        } else {
+            fb.className = 'feedback wrong';
+            fb.innerHTML = '<b>❌ Chưa chính xác!</b><br>Đáp án đúng: <b>' + correctAns + '</b><br><i>' + exp + '</i>';
+            scoreTrack[qNum] = 0;
+        }
+    }
+
+    // Chấm dạng Trắc nghiệm Multiple Choice
+    function checkMC(qNum, correctVal, exp) {
+        const selected = document.querySelector('input[name="q' + qNum + '"]:checked');
+        if (!selected) {
+            alert('Em hãy chọn 1 đáp án trước nhé!');
+            return;
+        }
+        renderFeedback(qNum, selected.value === correctVal, correctVal, exp);
+    }
+
+    // Chấm dạng Điền từ (Fill in the blanks)
+    function checkFill(qNum, validArray, exp) {
+        const val = document.getElementById('q' + qNum).value.trim().toLowerCase();
+        if (val === '') {
+            alert('Em hãy nhập đáp án vào ô trống nhé!');
+            return;
+        }
+        const isCorrect = validArray.some(ans => ans.toLowerCase() === val);
+        renderFeedback(qNum, isCorrect, validArray[0], exp);
+    }
+
+    // Chấm dạng Menu Thả xuống (Select Dropdown)
+    function checkSelect(qNum, correctVal, exp) {
+        const val = document.getElementById('q' + qNum).value;
+        if (val === '') {
+            alert('Em hãy chọn 1 đáp án trong danh sách nhé!');
+            return;
+        }
+        renderFeedback(qNum, val === correctVal, correctVal, exp);
+    }
+
+    // Tính tổng kết điểm số
+    function calculateTotalScore() {
+        let total = 0;
+        for (let i = 1; i <= 55; i++) {
+            total += scoreTrack[i];
+        }
+        const scoreBoard = document.getElementById('scoreBoard');
+        scoreBoard.innerHTML = `Kết quả: <span style="color: #27ae60;">${total} / 55</span> câu đúng!`;
+        scoreBoard.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>

@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <!-- Viewport chuẩn tối ưu hiển thị di động trên iOS & Android -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Health & Lifestyle Structures - Practice 30Q</title>
+    <style>
+        /* Reset & Tối ưu hóa Touch cho Di Động */
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent; /* Bỏ khung highlight xanh khi chạm trên Safari/Android */
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            margin: 0;
+            padding: 12px;
+            color: #2c3e50;
+            line-height: 1.5;
+        }
+        .container {
+            max-width: 850px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 16px;
+            border-radius: 12px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+        }
+        h1 {
+            text-align: center;
+            color: #2980b9;
+            font-size: 20px;
+            border-bottom: 3px solid #3498db;
+            padding-bottom: 10px;
+            margin-top: 5px;
+            margin-bottom: 20px;
+        }
+        .section-title {
+            background-color: #3498db;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 15px;
+        }
+        .q-card {
+            background: #fdfdfd;
+            border: 1px solid #e1e8ed;
+            border-left: 4px solid #3498db;
+            padding: 14px;
+            margin-bottom: 14px;
+            border-radius: 8px;
+        }
+        .q-text {
+            font-size: 15px;
+            font-weight: 600;
+            margin-bottom: 10px;
+            color: #1a202c;
+        }
+        .options {
+            margin-bottom: 8px;
+        }
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            padding: 8px 10px;
+            background: #f8fafc;
+            border-radius: 6px;
+            border: 1px solid #edf2f7;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+        /* Kích thước font >= 16px ngăn Safari trên iPhone tự động phóng to */
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px 12px;
+            border: 1px solid #cbd5e1;
+            border-radius: 6px;
+            font-size: 16px; /* Bắt buộc cho iOS */
+            margin-top: 4px;
+            margin-bottom: 6px;
+            background-color: #fff;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        select {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            padding-right: 30px;
+        }
+        .btn-check {
+            width: 100%; /* Nút bấm rộng hết chiều ngang dễ thao tác trên điện thoại */
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 6px;
+            transition: background-color 0.2s;
+        }
+        .btn-check:active {
+            background-color: #1e7e34;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+            line-height: 1.4;
+        }
+        .feedback.correct {
+            background-color: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+        .feedback.wrong {
+            background-color: #f8d7da;
+            color: #721c24;
+            border: 1px solid #f5c6cb;
+        }
+        .final-summary {
+            margin-top: 30px;
+            padding: 20px 15px;
+            background: #eef7fc;
+            border: 2px dashed #3498db;
+            border-radius: 10px;
+            text-align: center;
+        }
+        .btn-submit-all {
+            width: 100%;
+            background-color: #2980b9;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-submit-all:active {
+            background-color: #1c5980;
+        }
+        #scoreBoard {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2c3e50;
+            margin-top: 15px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>HEALTH & LIFESTYLE STRUCTURE PRACTICE</h1>
+
+    <!-- PART 1 -->
+    <div class="section-title">PART 1: MULTIPLE CHOICE (Chọn đáp án đúng)</div>
+
+    <div class="q-card" id="qc1">
+        <div class="q-text">1. Many teenagers are stuck ______ the screens of mobile phones these days.</div>
+        <div class="options">
+            <label><input type="radio" name="q1" value="A"> A. on</label>
+            <label><input type="radio" name="q1" value="B"> B. to</label>
+            <label><input type="radio" name="q1" value="C"> C. with</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(1, 'B', 'Cấu trúc: \'be stuck to + N\' (bị dán chặt vào/chăm chú vào cái gì).')">Kiểm tra câu 1</button>
+        <div class="feedback" id="fb1"></div>
+    </div>
+
+    <div class="q-card" id="qc2">
+        <div class="q-text">2. Watching too much TV can lead ______ backache and eye strain.</div>
+        <div class="options">
+            <label><input type="radio" name="q2" value="A"> A. to</label>
+            <label><input type="radio" name="q2" value="B"> B. in</label>
+            <label><input type="radio" name="q2" value="C"> C. for</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(2, 'A', 'Cấu trúc: \'lead to + N/V-ing\' (dẫn đến, gây ra hậu quả gì).')">Kiểm tra câu 2</button>
+        <div class="feedback" id="fb2"></div>
+    </div>
+
+    <div class="q-card" id="qc3">
+        <div class="q-text">3. This is an unhealthy habit that we should get rid ______.</div>
+        <div class="options">
+            <label><input type="radio" name="q3" value="A"> A. out</label>
+            <label><input type="radio" name="q3" value="B"> B. of</label>
+            <label><input type="radio" name="q3" value="C"> C. off</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(3, 'B', 'Cấu trúc: \'get rid of + N/V-ing\' (loại bỏ, từ bỏ thói quen/vật gì).')">Kiểm tra câu 3</button>
+        <div class="feedback" id="fb3"></div>
+    </div>
+
+    <div class="q-card" id="qc4">
+        <div class="q-text">4. Fast food has bad effects ______ our health.</div>
+        <div class="options">
+            <label><input type="radio" name="q4" value="A"> A. on</label>
+            <label><input type="radio" name="q4" value="B"> B. at</label>
+            <label><input type="radio" name="q4" value="C"> C. to</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(4, 'A', 'Cấu trúc: \'have a/an + adj + effect on + N\' (có tác hại/ảnh hưởng đến...).')">Kiểm tra câu 4</button>
+        <div class="feedback" id="fb4"></div>
+    </div>
+
+    <div class="q-card" id="qc5">
+        <div class="q-text">5. It is time to ______ out on our eating habits.</div>
+        <div class="options">
+            <label><input type="radio" name="q5" value="A"> A. look</label>
+            <label><input type="radio" name="q5" value="B"> B. watch</label>
+            <label><input type="radio" name="q5" value="C"> C. see</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(5, 'B', 'Cấu trúc: \'watch out (for + N)\' (cẩn trọng, chú ý đến).')">Kiểm tra câu 5</button>
+        <div class="feedback" id="fb5"></div>
+    </div>
+
+    <div class="q-card" id="qc6">
+        <div class="q-text">6. Exercise not only keeps us healthy ______ in good shape.</div>
+        <div class="options">
+            <label><input type="radio" name="q6" value="A"> A. and also</label>
+            <label><input type="radio" name="q6" value="B"> B. but also</label>
+            <label><input type="radio" name="q6" value="C"> C. or also</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(6, 'B', 'Cấu trúc đăng đối: \'not only... but also...\' (không chỉ... mà còn...).')">Kiểm tra câu 6</button>
+        <div class="feedback" id="fb6"></div>
+    </div>
+
+    <div class="q-card" id="qc7">
+        <div class="q-text">7. There is a tendency ______ skipping breakfast among teenagers.</div>
+        <div class="options">
+            <label><input type="radio" name="q7" value="A"> A. of</label>
+            <label><input type="radio" name="q7" value="B"> B. to</label>
+            <label><input type="radio" name="q7" value="C"> C. in</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(7, 'A', 'Cấu trúc: \'there is a tendency of + V-ing\' (có xu hướng làm gì).')">Kiểm tra câu 7</button>
+        <div class="feedback" id="fb7"></div>
+    </div>
+
+    <div class="q-card" id="qc8">
+        <div class="q-text">8. Fresh vegetables are essential ______ health and fitness.</div>
+        <div class="options">
+            <label><input type="radio" name="q8" value="A"> A. for</label>
+            <label><input type="radio" name="q8" value="B"> B. with</label>
+            <label><input type="radio" name="q8" value="C"> C. of</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(8, 'A', 'Cấu trúc: \'be essential to/for + N\' (thiết yếu, vô cùng quan trọng đối với).')">Kiểm tra câu 8</button>
+        <div class="feedback" id="fb8"></div>
+    </div>
+
+    <!-- PART 2 -->
+    <div class="section-title">PART 2: FILL IN THE BLANKS (Điền từ/giới từ phù hợp)</div>
+
+    <div class="q-card" id="qc9">
+        <div class="q-text">9. You should not ______ your meals because it causes stomachache. (bỏ bữa)</div>
+        <input type="text" id="q9" placeholder="Nhập từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(9, ['skip'], 'Từ cần điền là động từ \'skip\' (skip meals = bỏ bữa).')">Kiểm tra câu 9</button>
+        <div class="feedback" id="fb9"></div>
+    </div>
+
+    <div class="q-card" id="qc10">
+        <div class="q-text">10. Many towns are full ______ fast food restaurants. (chứa đầy, có nhiều)</div>
+        <input type="text" id="q10" placeholder="Nhập giới từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(10, ['of'], 'Cấu trúc: \'be full of + N\' (đầy, chứa đầy cái gì).')">Kiểm tra câu 10</button>
+        <div class="feedback" id="fb10"></div>
+    </div>
+
+    <div class="q-card" id="qc11">
+        <div class="q-text">11. It is time ______ change our unhealthy habits. (Đã đến lúc...)</div>
+        <input type="text" id="q11" placeholder="Nhập từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(11, ['to'], 'Cấu trúc: \'It is time to + V (infinitive)\' (đã đến lúc phải làm gì).')">Kiểm tra câu 11</button>
+        <div class="feedback" id="fb11"></div>
+    </div>
+
+    <div class="q-card" id="qc12">
+        <div class="q-text">12. What kinds ______ food contain a lot of sugar? (các loại...)</div>
+        <input type="text" id="q12" placeholder="Nhập giới từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(12, ['of'], 'Cấu trúc: \'kinds of + N\' (các loại thực phẩm/đồ vật).')">Kiểm tra câu 12</button>
+        <div class="feedback" id="fb12"></div>
+    </div>
+
+    <div class="q-card" id="qc13">
+        <div class="q-text">13. Eating home-made food keeps us in good ______. (vóc dáng cân đối)</div>
+        <input type="text" id="q13" placeholder="Nhập từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(13, ['shape'], 'Cấu trúc: \'keep + O + in good shape\' (giữ vóc dáng khỏe mạnh/cân đối).')">Kiểm tra câu 13</button>
+        <div class="feedback" id="fb13"></div>
+    </div>
+
+    <div class="q-card" id="qc14">
+        <div class="q-text">14. Smoking can lead ______ serious health problems, even cancer.</div>
+        <input type="text" id="q14" placeholder="Nhập giới từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(14, ['to'], 'Cấu trúc: \'lead to + N\' (dẫn đến tác hại/bệnh tật).')">Kiểm tra câu 14</button>
+        <div class="feedback" id="fb14"></div>
+    </div>
+
+    <div class="q-card" id="qc15">
+        <div class="q-text">15. You should get rid ______ junk food in your daily diet.</div>
+        <input type="text" id="q15" placeholder="Nhập giới từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(15, ['of'], 'Cấu trúc: \'get rid of + N\' (loại bỏ đồ ăn không lành mạnh).')">Kiểm tra câu 15</button>
+        <div class="feedback" id="fb15"></div>
+    </div>
+
+    <div class="q-card" id="qc16">
+        <div class="q-text">16. Good nutrition is essential ______ children\'s growth.</div>
+        <input type="text" id="q16" placeholder="Nhập giới từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(16, ['to', 'for'], 'Cấu trúc: \'be essential to/for + N\' (thiết yếu cho sự phát triển).')">Kiểm tra câu 16</button>
+        <div class="feedback" id="fb16"></div>
+    </div>
+
+    <!-- PART 3 -->
+    <div class="section-title">PART 3: DROP-DOWN MENU (Chọn cụm từ đúng)</div>
+
+    <div class="q-card" id="qc17">
+        <div class="q-text">17. Children tend to ______ the computer screen for hours.</div>
+        <select id="q17">
+            <option value="">-- Chọn cụm từ --</option>
+            <option value="be stuck to">be stuck to</option>
+            <option value="watch out">watch out</option>
+            <option value="skip">skip</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(17, 'be stuck to', 'Dùng \'be stuck to\' mang nghĩa bị dán mắt/chăm chú vào màn hình.')">Kiểm tra câu 17</button>
+        <div class="feedback" id="fb17"></div>
+    </div>
+
+    <div class="q-card" id="qc18">
+        <div class="q-text">18. We need to ______ our sugar intake right now.</div>
+        <select id="q18">
+            <option value="">-- Chọn cụm từ --</option>
+            <option value="get rid of">get rid of</option>
+            <option value="watch out for">watch out for</option>
+            <option value="be full of">be full of</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(18, 'watch out for', '\'watch out for\' có nghĩa là cẩn trọng/chú ý kiểm soát lượng đường.')">Kiểm tra câu 18</button>
+        <div class="feedback" id="fb18"></div>
+    </div>
+
+    <div class="q-card" id="qc19">
+        <div class="q-text">19. Fast food ______ fat and salt.</div>
+        <select id="q19">
+            <option value="">-- Chọn cụm từ --</option>
+            <option value="is full of">is full of</option>
+            <option value="leads to">leads to</option>
+            <option value="skips">skips</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(19, 'is full of', '\'be full of + N\' mang nghĩa đầy/chứa nhiều chất béo và muối.')">Kiểm tra câu 19</button>
+        <div class="feedback" id="fb19"></div>
+    </div>
+
+    <div class="q-card" id="qc20">
+        <div class="q-text">20. Home-made food ______ tastes good ______ keeps us healthy.</div>
+        <select id="q20">
+            <option value="">-- Chọn cụm từ --</option>
+            <option value="not only / but also">not only / but also</option>
+            <option value="kinds of / lead to">kinds of / lead to</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(20, 'not only / but also', 'Cấu trúc nối hai vế song song: \'not only... but also...\'.')">Kiểm tra câu 20</button>
+        <div class="feedback" id="fb20"></div>
+    </div>
+
+    <div class="q-card" id="qc21">
+        <div class="q-text">21. ______ stop eating junk food immediately!</div>
+        <select id="q21">
+            <option value="">-- Chọn cụm từ --</option>
+            <option value="It is time to">It is time to</option>
+            <option value="There is a tendency of">There is a tendency of</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(21, 'It is time to', '\'It is time to + V\' thể hiện sự nhắc nhở: Đã đến lúc phải ngừng ăn đồ ăn nhanh.')">Kiểm tra câu 21</button>
+        <div class="feedback" id="fb21"></div>
+    </div>
+
+    <div class="q-card" id="qc22">
+        <div class="q-text">22. Spending too much time sitting can ______ backache.</div>
+        <select id="q22">
+            <option value="">-- Chọn cụm từ --</option>
+            <option value="lead to">lead to</option>
+            <option value="keep in shape">keep in shape</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(22, 'lead to', '\'lead to + N\' mang nghĩa dẫn đến/gây ra chứng đau lưng.')">Kiểm tra câu 22</button>
+        <div class="feedback" id="fb22"></div>
+    </div>
+
+    <div class="q-card" id="qc23">
+        <div class="q-text">23. Fresh water is ______ human health.</div>
+        <select id="q23">
+            <option value="">-- Chọn cụm từ --</option>
+            <option value="essential for">essential for</option>
+            <option value="stuck to">stuck to</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(23, 'essential for', '\'be essential for + N\' có nghĩa là thiết yếu cho sức khỏe con người.')">Kiểm tra câu 23</button>
+        <div class="feedback" id="fb23"></div>
+    </div>
+
+    <!-- PART 4 -->
+    <div class="section-title">PART 4: UNSCRAMBLE SENTENCES (Sắp xếp câu)</div>
+
+    <div class="q-card" id="qc24">
+        <div class="q-text">24. Sắp xếp: [ We / get / of / bad / habits / should / rid / . ]</div>
+        <input type="text" id="q24" placeholder="Viết lại câu hoàn chỉnh..." autocomplete="off">
+        <button class="btn-check" onclick="checkUnscramble(24, 'We should get rid of bad habits.', 'Sắp xếp cấu trúc get rid of: We should get rid of bad habits.')">Kiểm tra câu 24</button>
+        <div class="feedback" id="fb24"></div>
+    </div>
+
+    <div class="q-card" id="qc25">
+        <div class="q-text">25. Sắp xếp: [ Sitting / can / to / backache / lead / . ]</div>
+        <input type="text" id="q25" placeholder="Viết lại câu hoàn chỉnh..." autocomplete="off">
+        <button class="btn-check" onclick="checkUnscramble(25, 'Sitting can lead to backache.', 'Sắp xếp cấu trúc lead to: Sitting can lead to backache.')">Kiểm tra câu 25</button>
+        <div class="feedback" id="fb25"></div>
+    </div>
+
+    <div class="q-card" id="qc26">
+        <div class="q-text">26. Sắp xếp: [ time / It / is / to / healthy / eat / . ]</div>
+        <input type="text" id="q26" placeholder="Viết lại câu hoàn chỉnh..." autocomplete="off">
+        <button class="btn-check" onclick="checkUnscramble(26, 'It is time to eat healthy.', 'Sắp xếp cấu trúc It is time to: It is time to eat healthy.')">Kiểm tra câu 26</button>
+        <div class="feedback" id="fb26"></div>
+    </div>
+
+    <div class="q-card" id="qc27">
+        <div class="q-text">27. Sắp xếp: [ Do / skip / not / meals / your / ! ]</div>
+        <input type="text" id="q27" placeholder="Viết lại câu hoàn chỉnh..." autocomplete="off">
+        <button class="btn-check" onclick="checkUnscramble(27, 'Do not skip your meals!', 'Cấu trúc câu mệnh lệnh phủ định: Do not skip your meals!')">Kiểm tra câu 27</button>
+        <div class="feedback" id="fb27"></div>
+    </div>
+
+    <div class="q-card" id="qc28">
+        <div class="q-text">28. Sắp xếp: [ Fruits / full / are / of / vitamins / . ]</div>
+        <input type="text" id="q28" placeholder="Viết lại câu hoàn chỉnh..." autocomplete="off">
+        <button class="btn-check" onclick="checkUnscramble(28, 'Fruits are full of vitamins.', 'Sắp xếp cấu trúc be full of: Fruits are full of vitamins.')">Kiểm tra câu 28</button>
+        <div class="feedback" id="fb28"></div>
+    </div>
+
+    <div class="q-card" id="qc29">
+        <div class="q-text">29. Sắp xếp: [ Exercise / us / in / good / keeps / shape / . ]</div>
+        <input type="text" id="q29" placeholder="Viết lại câu hoàn chỉnh..." autocomplete="off">
+        <button class="btn-check" onclick="checkUnscramble(29, 'Exercise keeps us in good shape.', 'Sắp xếp cấu trúc keep in good shape: Exercise keeps us in good shape.')">Kiểm tra câu 29</button>
+        <div class="feedback" id="fb29"></div>
+    </div>
+
+    <div class="q-card" id="qc30">
+        <div class="q-text">30. Sắp xếp: [ Water / is / to / health / essential / . ]</div>
+        <input type="text" id="q30" placeholder="Viết lại câu hoàn chỉnh..." autocomplete="off">
+        <button class="btn-check" onclick="checkUnscramble(30, 'Water is essential to health.', 'Sắp xếp cấu trúc be essential to: Water is essential to health.')">Kiểm tra câu 30</button>
+        <div class="feedback" id="fb30"></div>
+    </div>
+
+    <!-- TỔNG KẾT BÀI LÀM -->
+    <div class="final-summary">
+        <h2>HOÀN THÀNH BÀI TẬP</h2>
+        <p style="font-size: 14px;">Bấm vào nút bên dưới để xem tổng số câu đúng của em:</p>
+        <button class="btn-submit-all" onclick="calculateTotalScore()">TỔNG KẾT ĐIỂM SỐ</button>
+        <div id="scoreBoard"></div>
+    </div>
+
+</div>
+
+<script>
+    // Lưu trữ trạng thái chấm điểm của 30 câu (1: đúng, 0: chưa đúng/chưa làm)
+    let scoreTrack = new Array(31).fill(0);
+
+    function renderFeedback(qNum, isCorrect, correctAns, exp) {
+        const fb = document.getElementById('fb' + qNum);
+        fb.style.display = 'block';
+        if (isCorrect) {
+            fb.className = 'feedback correct';
+            fb.innerHTML = '<b>🎉 Chính xác!</b><br><i>' + exp + '</i>';
+            scoreTrack[qNum] = 1;
+        } else {
+            fb.className = 'feedback wrong';
+            fb.innerHTML = '<b>❌ Chưa chính xác!</b><br>Đáp án đúng: <b>' + correctAns + '</b><br><i>Giải thích: ' + exp + '</i>';
+            scoreTrack[qNum] = 0;
+        }
+    }
+
+    // Part 1
+    function checkMC(qNum, correctVal, exp) {
+        const selected = document.querySelector('input[name="q' + qNum + '"]:checked');
+        if (!selected) {
+            alert('Em hãy chọn một đáp án trước khi kiểm tra nhé!');
+            return;
+        }
+        renderFeedback(qNum, selected.value === correctVal, correctVal, exp);
+    }
+
+    // Part 2
+    function checkFill(qNum, validArray, exp) {
+        const val = document.getElementById('q' + qNum).value.trim().toLowerCase();
+        if (val === '') {
+            alert('Em hãy nhập từ còn thiếu vào ô nhé!');
+            return;
+        }
+        const isCorrect = validArray.some(ans => ans.toLowerCase() === val);
+        renderFeedback(qNum, isCorrect, validArray[0], exp);
+    }
+
+    // Part 3
+    function checkSelect(qNum, correctVal, exp) {
+        const val = document.getElementById('q' + qNum).value;
+        if (val === '') {
+            alert('Em hãy chọn một cụm từ nhé!');
+            return;
+        }
+        renderFeedback(qNum, val === correctVal, correctVal, exp);
+    }
+
+    // Part 4
+    function checkUnscramble(qNum, correctSentence, exp) {
+        const val = document.getElementById('q' + qNum).value.trim();
+        if (val === '') {
+            alert('Em hãy viết lại câu hoàn chỉnh nhé!');
+            return;
+        }
+        const cleanUser = val.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const cleanTarget = correctSentence.toLowerCase().replace(/[^a-z0-9]/g, '');
+        
+        renderFeedback(qNum, cleanUser === cleanTarget, correctSentence, exp);
+    }
+
+    // Tính tổng số điểm
+    function calculateTotalScore() {
+        let total = 0;
+        for (let i = 1; i <= 30; i++) {
+            total += scoreTrack[i];
+        }
+        const scoreBoard = document.getElementById('scoreBoard');
+        scoreBoard.innerHTML = `Kết quả bài làm của em: <span style="color: #27ae60;">${total} / 30</span> câu đúng!`;
+        scoreBoard.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
