@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>GS7-U2: Healthy Living - 30 Exercises</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Times New Roman", Times, serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 12px;
+            color: #1a202c;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+        h1 {
+            text-align: center;
+            color: #2b6cb0;
+            font-size: 22px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        p.subtitle {
+            text-align: center;
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .section-header {
+            background-color: #3182ce;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 22px;
+            margin-bottom: 12px;
+        }
+        .q-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #4299e1;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            border-radius: 8px;
+        }
+        .q-text {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 8px 10px;
+            background: #ffffff;
+            border-radius: 6px;
+            border: 1px solid #cbd5e0;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+        input[type="text"], select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 16px; /* Giữ 16px chống auto-zoom trên iOS Safari */
+            font-family: "Times New Roman", Times, serif;
+            margin-top: 4px;
+            margin-bottom: 8px;
+            background-color: #fff;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        select {
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            padding-right: 30px;
+        }
+        .btn-check {
+            width: 100%;
+            background-color: #38a169;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            font-family: "Times New Roman", Times, serif;
+            margin-top: 4px;
+        }
+        .btn-check:active {
+            background-color: #2f855a;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 15px;
+            display: none;
+            font-weight: bold;
+        }
+        .feedback.correct {
+            background-color: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+        .feedback.wrong {
+            background-color: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #feb2b2;
+        }
+        .summary-box {
+            margin-top: 30px;
+            padding: 16px;
+            background: #ebf8ff;
+            border: 2px dashed #3182ce;
+            border-radius: 10px;
+        }
+        .btn-submit-all {
+            width: 100%;
+            background-color: #2b6cb0;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 17px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-family: "Times New Roman", Times, serif;
+        }
+        #scoreDisplay {
+            font-size: 19px;
+            font-weight: bold;
+            color: #2b6cb0;
+            margin-top: 12px;
+            text-align: center;
+        }
+        .error-item {
+            background: #ffffff;
+            border: 1px solid #feb2b2;
+            border-left: 4px solid #e53e3e;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+        .error-item .q-title {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>GS7 - UNIT 2: HEALTHY LIVING (30 CÂU)</h1>
+    <p class="subtitle">Em hãy làm lần lượt từng câu, bấm nút Check và xem Bảng tổng kết câu sai ở cuối bài nhé!</p>
+
+    <!-- DẠNG 1: TRẮC NGHIỆM -->
+    <div class="section-header">DẠNG 1: TRẮC NGHIỆM TỪ VỰNG & NGỮ PHÁP (CÂU 1 - 8)</div>
+
+    <div class="q-card">
+        <div class="q-text">1. You shouldn't ______ doctor's advice when you have a fever.</div>
+        <div class="options">
+            <label><input type="radio" name="q1" value="A"> A. ignore</label>
+            <label><input type="radio" name="q1" value="B"> B. spread</label>
+            <label><input type="radio" name="q1" value="C"> C. stop</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(1, 'A')">Check câu 1</button>
+        <div class="feedback" id="fb1"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">2. Washing hands frequently helps to prevent the ______ of diseases.</div>
+        <div class="options">
+            <label><input type="radio" name="q2" value="A"> A. ignore</label>
+            <label><input type="radio" name="q2" value="B"> B. spread</label>
+            <label><input type="radio" name="q2" value="C"> C. learn</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(2, 'B')">Check câu 2</button>
+        <div class="feedback" id="fb2"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">3. I have learned English ______ 3 years ago.</div>
+        <div class="options">
+            <label><input type="radio" name="q3" value="A"> A. for</label>
+            <label><input type="radio" name="q3" value="B"> B. since</label>
+            <label><input type="radio" name="q3" value="C"> C. from</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(3, 'B')">Check câu 3</button>
+        <div class="feedback" id="fb3"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">4. She has played the piano ______ 5 months.</div>
+        <div class="options">
+            <label><input type="radio" name="q4" value="A"> A. since</label>
+            <label><input type="radio" name="q4" value="B"> B. for</label>
+            <label><input type="radio" name="q4" value="C"> C. in</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(4, 'B')">Check câu 4</button>
+        <div class="feedback" id="fb4"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">5. If I were you, I ______ more vegetables every day.</div>
+        <div class="options">
+            <label><input type="radio" name="q5" value="A"> A. will eat</label>
+            <label><input type="radio" name="q5" value="B"> B. would eat</label>
+            <label><input type="radio" name="q5" value="C"> C. ate</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(5, 'B')">Check câu 5</button>
+        <div class="feedback" id="fb5"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">6. He is ______ tired that he cannot finish his work.</div>
+        <div class="options">
+            <label><input type="radio" name="q6" value="A"> A. very</label>
+            <label><input type="radio" name="q6" value="B"> B. so</label>
+            <label><input type="radio" name="q6" value="C"> C. too</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(6, 'B')">Check câu 6</button>
+        <div class="feedback" id="fb6"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">7. She runs ______ fast that nobody can catch her.</div>
+        <div class="options">
+            <label><input type="radio" name="q7" value="A"> A. so</label>
+            <label><input type="radio" name="q7" value="B"> B. such</label>
+            <label><input type="radio" name="q7" value="C"> C. too</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(7, 'A')">Check câu 7</button>
+        <div class="feedback" id="fb7"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">8. I have no idea ______ to fix this broken bike.</div>
+        <div class="options">
+            <label><input type="radio" name="q8" value="A"> A. what</label>
+            <label><input type="radio" name="q8" value="B"> B. how</label>
+            <label><input type="radio" name="q8" value="C"> C. where</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(8, 'B')">Check câu 8</button>
+        <div class="feedback" id="fb8"></div>
+    </div>
+
+
+    <!-- DẠNG 2: CHỌN LƯỢNG TỪ -->
+    <div class="section-header">DẠNG 2: CHỌN LƯỢNG TỪ THÍCH HỢP (CÂU 9 - 16)</div>
+
+    <div class="q-card">
+        <div class="q-text">9. There is only ______ water left in the bottle. (1 ít - N không đếm được)</div>
+        <select id="q9">
+            <option value="">-- Chọn lượng từ --</option>
+            <option value="a little">a little</option>
+            <option value="a few">a few</option>
+            <option value="several">several</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(9, 'a little')">Check câu 9</button>
+        <div class="feedback" id="fb9"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">10. He bought ______ apples at the supermarket. (1 vài - N đếm được)</div>
+        <select id="q10">
+            <option value="">-- Chọn lượng từ --</option>
+            <option value="little">little</option>
+            <option value="several">several</option>
+            <option value="a little">a little</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(10, 'several')">Check câu 10</button>
+        <div class="feedback" id="fb10"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">11. She has ______ friends because she is very shy. (Rất ít - N đếm được)</div>
+        <select id="q11">
+            <option value="">-- Chọn lượng từ --</option>
+            <option value="few">few</option>
+            <option value="a few">a few</option>
+            <option value="little">little</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(11, 'few')">Check câu 11</button>
+        <div class="feedback" id="fb11"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">12. There is ______ sugar in my tea. It is not sweet. (Rất ít - N không đếm được)</div>
+        <select id="q12">
+            <option value="">-- Chọn lượng từ --</option>
+            <option value="few">few</option>
+            <option value="little">little</option>
+            <option value="several">several</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(12, 'little')">Check câu 12</button>
+        <div class="feedback" id="fb12"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">13. I have ______ books about healthy food. (Một vài - N đếm được)</div>
+        <select id="q13">
+            <option value="">-- Chọn lượng từ --</option>
+            <option value="a few">a few</option>
+            <option value="a little">a little</option>
+            <option value="little">little</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(13, 'a few')">Check câu 13</button>
+        <div class="feedback" id="fb13"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">14. They spent ______ money on fast food. (Rất nhiều)</div>
+        <select id="q14">
+            <option value="">-- Chọn lượng từ --</option>
+            <option value="a lot of">a lot of</option>
+            <option value="a few">a few</option>
+            <option value="several">several</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(14, 'a lot of')">Check câu 14</button>
+        <div class="feedback" id="fb14"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">15. My mother eats ______ fresh oranges every week. (Nhiều)</div>
+        <select id="q15">
+            <option value="">-- Chọn lượng từ --</option>
+            <option value="lots of">lots of</option>
+            <option value="a little">a little</option>
+            <option value="little">little</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(15, 'lots of')">Check câu 15</button>
+        <div class="feedback" id="fb15"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">16. We need ______ minutes to finish this exercise. (Một vài)</div>
+        <select id="q16">
+            <option value="">-- Chọn lượng từ --</option>
+            <option value="a few">a few</option>
+            <option value="little">little</option>
+            <option value="a little">a little</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(16, 'a few')">Check câu 16</button>
+        <div class="feedback" id="fb16"></div>
+    </div>
+
+
+    <!-- DẠNG 3: CHIA ĐỘNG TỪ -->
+    <div class="section-header">DẠNG 3: CHIA DẠNG ĐÚNG CỦA ĐỘNG TỪ (CÂU 17 - 23)</div>
+
+    <div class="q-card">
+        <div class="q-text">17. On the way home, we stop ______ (buy) some fresh fruit.</div>
+        <input type="text" id="q17" placeholder="Nhập dạng đúng của động từ..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkFill(17, ['to buy'])">Check câu 17</button>
+        <div class="feedback" id="fb17"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">18. My father stops ______ (smoke) because it is bad for health.</div>
+        <input type="text" id="q18" placeholder="Nhập dạng đúng của động từ..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkFill(18, ['smoking'])">Check câu 18</button>
+        <div class="feedback" id="fb18"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">19. She is very good at ______ (cook) healthy meals.</div>
+        <input type="text" id="q19" placeholder="Nhập dạng đúng của động từ..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkFill(19, ['cooking'])">Check câu 19</button>
+        <div class="feedback" id="fb19"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">20. If it rains tomorrow, we ______ (cancel) the outdoor match.</div>
+        <input type="text" id="q20" placeholder="Nhập dạng đúng của động từ..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkFill(20, ['will cancel'])">Check câu 20</button>
+        <div class="feedback" id="fb20"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">21. Nam is bad at ______ (play) football.</div>
+        <input type="text" id="q21" placeholder="Nhập dạng đúng của động từ..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkFill(21, ['playing'])">Check câu 21</button>
+        <div class="feedback" id="fb21"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">22. They stopped ______ (take) photos when they saw the lake.</div>
+        <input type="text" id="q22" placeholder="Nhập dạng đúng của động từ..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkFill(22, ['to take'])">Check câu 22</button>
+        <div class="feedback" id="fb22"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">23. If she works hard, she ______ (pass) the exam easily.</div>
+        <input type="text" id="q23" placeholder="Nhập dạng đúng của động từ..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkFill(23, ['will pass'])">Check câu 23</button>
+        <div class="feedback" id="fb23"></div>
+    </div>
+
+
+    <!-- DẠNG 4: SẮP XẾP CÂU (TỪ LỘN XỘN) -->
+    <div class="section-header">DẠNG 4: SẮP XẾP TỪ LỘN XỘN THÀNH CÂU (CÂU 24 - 30)</div>
+
+    <div class="q-card">
+        <div class="q-text">24. Từ lộn xộn: [ go / where / know / don't / I / to / . ]</div>
+        <input type="text" id="q24" placeholder="Nhập câu hoàn chỉnh..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(24, 'I don\'t know where to go.')">Check câu 24</button>
+        <div class="feedback" id="fb24"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">25. Từ lộn xộn: [ fast / drives / he / so / that / can / an / accident / have / . ]</div>
+        <input type="text" id="q25" placeholder="Nhập câu hoàn chỉnh..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(25, 'He drives so fast that he can have an accident.')">Check câu 25</button>
+        <div class="feedback" id="fb25"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">26. Từ lộn xộn: [ learned / for / English / have / I / 3 / months / . ]</div>
+        <input type="text" id="q26" placeholder="Nhập câu hoàn chỉnh..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(26, 'I have learned English for 3 months.')">Check câu 26</button>
+        <div class="feedback" id="fb26"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">27. Từ lộn xộn: [ study / Nam / were / If / I / I / would / harder / , / . ]</div>
+        <input type="text" id="q27" placeholder="Nhập câu hoàn chỉnh..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(27, 'If I were Nam, I would study harder.')">Check câu 27</button>
+        <div class="feedback" id="fb27"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">28. Từ lộn xộn: [ play / how / piano / to / idea / have / no / I / the / . ]</div>
+        <input type="text" id="q28" placeholder="Nhập câu hoàn chỉnh..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(28, 'I have no idea how to play the piano.')">Check câu 28</button>
+        <div class="feedback" id="fb28"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">29. Từ lộn xộn: [ years / since / learned / math / she / 2 / has / ago / . ]</div>
+        <input type="text" id="q29" placeholder="Nhập câu hoàn chỉnh..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(29, 'She has learned math since 2 years ago.')">Check câu 29</button>
+        <div class="feedback" id="fb29"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">30. Từ lộn xộn: [ short / is / basketball / so / that / play / he / cannot / . ]</div>
+        <input type="text" id="q30" placeholder="Nhập câu hoàn chỉnh..." autocomplete="off" autocapitalize="none" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(30, 'He is so short that he cannot play basketball.')">Check câu 30</button>
+        <div class="feedback" id="fb30"></div>
+    </div>
+
+
+    <!-- TỔNG KẾT ĐIỂM VÀ LỖI SAI -->
+    <div class="summary-box">
+        <h3 style="text-align: center; color: #2b6cb0; margin-top: 0;">KẾT QUẢ BÀI LÀM</h3>
+        <p style="text-align: center; font-size: 15px;">Bấm nút dưới đây để xem tổng điểm và danh sách đầy đủ các câu làm sai nhé!</p>
+        <button class="btn-submit-all" onclick="calculateScore()">TỔNG KẾT ĐIỂM & XEM LỖI SAI</button>
+        <div id="scoreDisplay"></div>
+        <div id="errorSummary"></div>
+    </div>
+
+</div>
+
+<script>
+    // Cơ sở dữ liệu đáp án & Giải thích chi tiết (Lưu cả Nội dung đề bài để hiện bảng tổng kết)
+    const database = {
+        1: { title: "1. You shouldn't ______ doctor's advice when you have a fever.", target: 'A. ignore', exp: 'Dùng động từ <b>ignore</b> (phớt lờ / không nghe theo lời khuyên của bác sĩ).' },
+        2: { title: "2. Washing hands frequently helps to prevent the ______ of diseases.", target: 'B. spread', exp: 'Dùng danh từ/động từ <b>spread</b> (sự lan rộng / lây lan của dịch bệnh).' },
+        3: { title: "3. I have learned English ______ 3 years ago.", target: 'B. since', exp: 'Hiện tại hoàn thành đi với mốc thời gian có ago: <b>Since + thời gian + ago</b>.' },
+        4: { title: "4. She has played the piano ______ 5 months.", target: 'B. for', exp: 'Hiện tại hoàn thành đi với khoảng thời gian: <b>For + khoảng thời gian</b> (for 5 months).' },
+        5: { title: "5. If I were you, I ______ more vegetables every day.", target: 'B. would eat', exp: 'Câu điều kiện loại 2 (không có thật ở hiện tại): <b>If S + were, S + would + V-inf</b>.' },
+        6: { title: "6. He is ______ tired that he cannot finish his work.", target: 'B. so', exp: 'Cấu trúc <b>S + be + SO + adj + THAT + S + V</b> (đến nỗi mà).' },
+        7: { title: "7. She runs ______ fast that nobody can catch her.", target: 'A. so', exp: 'Cấu trúc với trạng từ: <b>S + V + SO + adv + THAT + S + V</b>.' },
+        8: { title: "8. I have no idea ______ to fix this broken bike.", target: 'B. how', exp: 'Cấu trúc từ hỏi + To V: <b>how to fix</b> (làm sao / cách để sửa).' },
+        9: { title: "9. There is only ______ water left in the bottle.", target: 'a little', exp: '<b>A little + N không đếm được</b> (water) mang nghĩa "có một ít".' },
+        10: { title: "10. He bought ______ apples at the supermarket.", target: 'several', exp: '<b>Several + N đếm được số nhiều</b> (apples) mang nghĩa "một vài".' },
+        11: { title: "11. She has ______ friends because she is very shy.", target: 'few', exp: '<b>Few + N đếm được số nhiều</b> (friends) mang nghĩa "rất ít" (gần như không có).' },
+        12: { title: "12. There is ______ sugar in my tea. It is not sweet.", target: 'little', exp: '<b>Little + N không đếm được</b> (sugar) mang nghĩa "rất ít" (không đủ).' },
+        13: { title: "13. I have ______ books about healthy food.", target: 'a few', exp: '<b>A few + N đếm được số nhiều</b> (books) mang nghĩa "có một vài".' },
+        14: { title: "14. They spent ______ money on fast food.", target: 'a lot of', exp: '<b>A lot of + N đếm được / không đếm được</b> mang nghĩa "nhiều".' },
+        15: { title: "15. My mother eats ______ fresh oranges every week.", target: 'lots of', exp: '<b>Lots of = A lot of</b> (nhiều).' },
+        16: { title: "16. We need ______ minutes to finish this exercise.", target: 'a few', exp: '<b>A few + N đếm được số nhiều</b> (minutes) mang nghĩa "một vài phút".' },
+        17: { title: "17. On the way home, we stop ______ (buy) some fresh fruit.", target: 'to buy', exp: 'Cấu trúc <b>stop + to V</b>: Dừng lại để làm việc khác.' },
+        18: { title: "18. My father stops ______ (smoke) because it is bad for health.", target: 'smoking', exp: 'Cấu trúc <b>stop + V-ing</b>: Dừng hẳn việc đang làm (bỏ thuốc).' },
+        19: { title: "19. She is very good at ______ (cook) healthy meals.", target: 'cooking', exp: 'Cấu trúc <b>be good at + V-ing</b>: Giỏi làm việc gì.' },
+        20: { title: "20. If it rains tomorrow, we ______ (cancel) the outdoor match.", target: 'will cancel', exp: 'Câu điều kiện loại 1: <b>If S + V (HTĐ), S + will + V-inf</b>.' },
+        21: { title: "21. Nam is bad at ______ (play) football.", target: 'playing', exp: 'Sau giới từ (at) động từ chia dạng <b>V-ing</b>.' },
+        22: { title: "22. They stopped ______ (take) photos when they saw the lake.", target: 'to take', exp: 'Dừng hành động lại <b>để làm việc khác</b> (dừng lại để chụp ảnh).' },
+        23: { title: "23. If she works hard, she ______ (pass) the exam easily.", target: 'will pass', exp: 'Câu điều kiện loại 1 diễn tả sự việc có thể xảy ra ở tương lai.' },
+        24: { title: "24. Từ lộn xộn: [ go / where / know / don't / I / to / . ]", target: "I don't know where to go.", exp: 'Sắp xếp đúng theo cấu trúc <b>Wh-word + to V</b>.' },
+        25: { title: "25. Từ lộn xộn: [ fast / drives / he / so / that / can / an / accident / have / . ]", target: 'He drives so fast that he can have an accident.', exp: 'Sắp xếp theo cấu trúc <b>S + V + SO + adv + THAT + S + V</b>.' },
+        26: { title: "26. Từ lộn xộn: [ learned / for / English / have / I / 3 / months / . ]", target: 'I have learned English for 3 months.', exp: 'Sắp xếp câu Hiện tại hoàn thành với <b>For + khoảng thời gian</b>.' },
+        27: { title: "27. Từ lộn xộn: [ study / Nam / were / If / I / I / would / harder / , / . ]", target: 'If I were Nam, I would study harder.', exp: 'Sắp xếp đúng theo cấu trúc <b>Câu điều kiện loại 2</b>.' },
+        28: { title: "28. Từ lộn xộn: [ play / how / piano / to / idea / have / no / I / the / . ]", target: 'I have no idea how to play the piano.', exp: 'Cụm từ cố định: <b>have no idea how to V</b> (không biết cách làm gì).' },
+        29: { title: "29. Từ lộn xộn: [ years / since / learned / math / she / 2 / has / ago / . ]", target: 'She has learned math since 2 years ago.', exp: 'Sắp xếp câu Hiện tại hoàn thành với <b>Since + thời gian + ago</b>.' },
+        30: { title: "30. Từ lộn xộn: [ short / is / basketball / so / that / play / he / cannot / . ]", target: 'He is so short that he cannot play basketball.', exp: 'Sắp xếp đúng theo cấu trúc <b>S + be + SO + adj + THAT + S + V</b>.' }
+    };
+
+    let userResults = new Array(31).fill(0);
+    let userAnswers = new Array(31).fill('');
+
+    function markResult(qNum, isCorrect, userAns) {
+        const fb = document.getElementById('fb' + qNum);
+        fb.style.display = 'block';
+        userAnswers[qNum] = userAns;
+
+        if (isCorrect) {
+            fb.className = 'feedback correct';
+            fb.innerHTML = '✔ Đúng rồi!';
+            userResults[qNum] = 1;
+        } else {
+            fb.className = 'feedback wrong';
+            fb.innerHTML = '✖ Chưa đúng!';
+            userResults[qNum] = 0;
+        }
+    }
+
+    // Dạng 1: Trắc nghiệm
+    function checkMC(qNum, correctVal) {
+        const selected = document.querySelector('input[name="q' + qNum + '"]:checked');
+        if (!selected) {
+            alert('Em hãy chọn một đáp án trước khi bấm Check nhé!');
+            return;
+        }
+        markResult(qNum, selected.value === correctVal, selected.value);
+    }
+
+    // Dạng 2: Dropdown
+    function checkSelect(qNum, correctVal) {
+        const val = document.getElementById('q' + qNum).value;
+        if (val === '') {
+            alert('Em hãy chọn một lựa chọn trước khi bấm Check nhé!');
+            return;
+        }
+        markResult(qNum, val === correctVal, val);
+    }
+
+    // Dạng 3: Điền từ
+    function checkFill(qNum, validAnswers) {
+        const val = document.getElementById('q' + qNum).value.trim();
+        if (val === '') {
+            alert('Em hãy nhập câu trả lời trước khi bấm Check nhé!');
+            return;
+        }
+        const isCorrect = validAnswers.some(ans => ans.toLowerCase() === val.toLowerCase());
+        markResult(qNum, isCorrect, val);
+    }
+
+    // Dạng 4: Sắp xếp câu
+    function checkSentence(qNum, targetSentence) {
+        const val = document.getElementById('q' + qNum).value.trim();
+        if (val === '') {
+            alert('Em hãy nhập câu trả lời trước khi bấm Check nhé!');
+            return;
+        }
+        const cleanUser = val.toLowerCase().replace(/[^a-z0-9]/g, '');
+        const cleanTarget = targetSentence.toLowerCase().replace(/[^a-z0-9]/g, '');
+        markResult(qNum, cleanUser === cleanTarget, val);
+    }
+
+    // Tính tổng điểm và Tổng hợp câu sai kèm đề bài
+    function calculateScore() {
+        let total = 0;
+        let errorHTML = '';
+
+        for (let i = 1; i <= 30; i++) {
+            if (userResults[i] === 1) {
+                total++;
+            } else {
+                let currentAns = userAnswers[i] ? userAnswers[i] : 'Chưa làm/Chưa nhập';
+                errorHTML += `
+                    <div class="error-item">
+                        <div class="q-title">📌 ${database[i].title}</div>
+                        - Đáp án em đã chọn/nhập: <span style="color: #c53030; font-weight: bold;">${currentAns}</span><br>
+                        - Đáp án đúng chuẩn: <span style="color: #2b6cb0; font-weight: bold;">${database[i].target}</span><br>
+                        - <i>Giải thích: ${database[i].exp}</i>
+                    </div>
+                `;
+            }
+        }
+
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        scoreDisplay.innerHTML = `Kết quả tổng kết: <span style="color: #2b6cb0;">${total} / 30</span> câu đúng!`;
+
+        const errorSummary = document.getElementById('errorSummary');
+        if (total === 30) {
+            errorSummary.innerHTML = '<div style="color: #2f855a; font-weight: bold; text-align: center; margin-top: 15px;">🎉 Xuất sắc! Em đã làm đúng tất cả 30 câu!</div>';
+        } else {
+            errorSummary.innerHTML = '<h4 style="color: #c53030; margin-top: 20px; margin-bottom: 5px;">BẢNG TỔNG HỢP CÂU SAI & ĐỀ BÀI CHI TIẾT:</h4>' + errorHTML;
+        }
+
+        errorSummary.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
