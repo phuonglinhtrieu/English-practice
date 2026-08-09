@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Movers Level: Trọng Âm Từ 2 Âm Tiết</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 12px;
+            color: #1a202c;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 750px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 18px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+        h1 {
+            text-align: center;
+            color: #2b6cb0;
+            font-size: 20px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        p.subtitle {
+            text-align: center;
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 20px;
+        }
+        .section-header {
+            background-color: #3182ce;
+            color: white;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 15px;
+            font-weight: bold;
+            margin-top: 22px;
+            margin-bottom: 12px;
+        }
+        .q-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #4299e1;
+            padding: 12px 14px;
+            margin-bottom: 14px;
+            border-radius: 8px;
+        }
+        .q-text {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2d3748;
+        }
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            padding: 8px 10px;
+            background: #ffffff;
+            border-radius: 6px;
+            border: 1px solid #cbd5e0;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+        select {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 16px;
+            margin-top: 4px;
+            margin-bottom: 8px;
+            background-color: #fff;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%234a5568' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 10px center;
+            background-size: 16px;
+            padding-right: 30px;
+        }
+        .btn-check {
+            width: 100%;
+            background-color: #38a169;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 15px;
+            margin-top: 4px;
+        }
+        .btn-check:active {
+            background-color: #2f855a;
+        }
+        .feedback {
+            margin-top: 10px;
+            padding: 10px;
+            border-radius: 6px;
+            font-size: 15px;
+            display: none;
+            font-weight: bold;
+        }
+        .feedback.correct {
+            background-color: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+        .feedback.wrong {
+            background-color: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #feb2b2;
+        }
+        .summary-box {
+            margin-top: 30px;
+            padding: 16px;
+            background: #ebf8ff;
+            border: 2px dashed #3182ce;
+            border-radius: 10px;
+        }
+        .btn-submit-all {
+            width: 100%;
+            background-color: #2b6cb0;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 17px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #scoreDisplay {
+            font-size: 19px;
+            font-weight: bold;
+            color: #2b6cb0;
+            margin-top: 12px;
+            text-align: center;
+        }
+        .error-item {
+            background: #ffffff;
+            border: 1px solid #feb2b2;
+            border-left: 4px solid #e53e3e;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 6px;
+            font-size: 15px;
+        }
+        .error-item .q-title {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>BÀI TẬP TRỌNG ÂM TỪ 2 ÂM TIẾT - CẤP ĐỘ MOVERS (20 CÂU)</h1>
+    <p class="subtitle">Em hãy chọn đáp án cho từng câu, bấm Check để kiểm tra và xem Bảng tổng kết giải thích chi tiết ở cuối bài nhé!</p>
+
+    <!-- DẠNG 1: TRẮC NGHIỆM TÌM TỪ KHÁC -->
+    <div class="section-header">PHẦN 1: TÌM TỪ CÓ TRỌNG ÂM KHÁC VỚI CÁC TỪ CÒN LẠI (CÂU 1 - 10)</div>
+
+    <div class="q-card">
+        <div class="q-text">1. Chọn từ có trọng âm khác:</div>
+        <div class="options">
+            <label><input type="radio" name="q1" value="A"> A. active</label>
+            <label><input type="radio" name="q1" value="B"> B. lovely</label>
+            <label><input type="radio" name="q1" value="C"> C. begin</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(1, 'C')">Check câu 1</button>
+        <div class="feedback" id="fb1"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">2. Chọn từ có trọng âm khác:</div>
+        <div class="options">
+            <label><input type="radio" name="q2" value="A"> A. doctor</label>
+            <label><input type="radio" name="q2" value="B"> B. agree</label>
+            <label><input type="radio" name="q2" value="C"> C. teacher</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(2, 'B')">Check câu 2</button>
+        <div class="feedback" id="fb2"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">3. Chọn từ có trọng âm khác:</div>
+        <div class="options">
+            <label><input type="radio" name="q3" value="A"> A. sixteen</label>
+            <label><input type="radio" name="q3" value="B"> B. sixty</label>
+            <label><input type="radio" name="q3" value="C"> C. happy</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(3, 'A')">Check câu 3</button>
+        <div class="feedback" id="fb3"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">4. Chọn từ có trọng âm khác:</div>
+        <div class="options">
+            <label><input type="radio" name="q4" value="A"> A. sister</label>
+            <label><input type="radio" name="q4" value="B"> B. panda</label>
+            <label><input type="radio" name="q4" value="C"> C. enjoy</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(4, 'C')">Check câu 4</button>
+        <div class="feedback" id="fb4"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">5. Chọn từ có trọng âm khác:</div>
+        <div class="options">
+            <label><input type="radio" name="q5" value="A"> A. fifteen</label>
+            <label><input type="radio" name="q5" value="B"> B. fifty</label>
+            <label><input type="radio" name="q5" value="C"> C. thirty</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(5, 'A')">Check câu 5</button>
+        <div class="feedback" id="fb5"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">6. Chọn từ có trọng âm khác:</div>
+        <div class="options">
+            <label><input type="radio" name="q6" value="A"> A. finish</label>
+            <label><input type="radio" name="q6" value="B"> B. invite</label>
+            <label><input type="radio" name="q6" value="C"> C. answer</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(6, 'B')">Check câu 6</button>
+        <div class="feedback" id="fb6"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">7. Chọn từ có trọng âm khác:</div>
+        <div class="options">
+            <label><input type="radio" name="q7" value="A"> A. fourteen</label>
+            <label><input type="radio" name="q7" value="B"> B. eighteen</label>
+            <label><input type="radio" name="q7" value="C"> C. eighty</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(7, 'C')">Check câu 7</button>
+        <div class="feedback" id="fb7"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">8. Chọn từ có trọng âm khác:</div>
+        <div class="options">
+            <label><input type="radio" name="q8" value="A"> A. market</label>
+            <label><input type="radio" name="q8" value="B"> B. animal</label>
+            <label><input type="radio" name="q8" value="C"> C. decide</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(8, 'C')">Check câu 8</button>
+        <div class="feedback" id="fb8"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">9. Chọn từ có trọng âm khác:</div>
+        <div class="options">
+            <label><input type="radio" name="q9" value="A"> A. become</label>
+            <label><input type="radio" name="q9" value="B"> B. clever</label>
+            <label><input type="radio" name="q9" value="C"> C. famous</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(9, 'A')">Check câu 9</button>
+        <div class="feedback" id="fb9"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">10. Chọn từ có trọng âm khác:</div>
+        <div class="options">
+            <label><input type="radio" name="q10" value="A"> A. nineteen</label>
+            <label><input type="radio" name="q10" value="B"> B. ninety</label>
+
+            <label><input type="radio" name="q10" value="C"> C. forty</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(10, 'A')">Check câu 10</button>
+        <div class="feedback" id="fb10"></div>
+    </div>
+
+
+    <!-- DẠNG 2: XÁC ĐỊNH VỊ TRÍ TRỌNG ÂM (ÂM 1 HAY ÂM 2) -->
+    <div class="section-header">PHẦN 2: XÁC ĐỊNH VỊ TRÍ TRỌNG ÂM THEO QUY TẮC (CÂU 11 - 20)</div>
+
+    <div class="q-card">
+        <div class="q-text">11. Động từ "begin" (bắt đầu) có trọng âm rơi vào âm tiết thứ mấy?</div>
+        <select id="q11">
+            <option value="">-- Chọn vị trí trọng âm --</option>
+            <option value="1">Âm tiết thứ 1</option>
+            <option value="2">Âm tiết thứ 2</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(11, '2')">Check câu 11</button>
+        <div class="feedback" id="fb11"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">12. Tính từ "active" (năng động) có trọng âm rơi vào âm tiết thứ mấy?</div>
+        <select id="q12">
+            <option value="">-- Chọn vị trí trọng âm --</option>
+            <option value="1">Âm tiết thứ 1</option>
+            <option value="2">Âm tiết thứ 2</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(12, '1')">Check câu 12</button>
+        <div class="feedback" id="fb12"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">13. Danh từ "doctor" (bác sĩ) có trọng âm rơi vào âm tiết thứ mấy?</div>
+        <select id="q13">
+            <option value="">-- Chọn vị trí trọng âm --</option>
+            <option value="1">Âm tiết thứ 1</option>
+            <option value="2">Âm tiết thứ 2</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(13, '1')">Check câu 13</button>
+        <div class="feedback" id="fb13"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">14. Số đếm đuôi '-teen' (như sixteen, fifteen) có trọng âm rơi vào âm tiết thứ mấy?</div>
+        <select id="q14">
+            <option value="">-- Chọn vị trí trọng âm --</option>
+            <option value="1">Âm tiết thứ 1</option>
+            <option value="2">Âm tiết thứ 2</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(14, '2')">Check câu 14</button>
+        <div class="feedback" id="fb14"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">15. Số đếm tròn chục đuôi '-ty' (như sixty, fifty) có trọng âm rơi vào âm tiết thứ mấy?</div>
+        <select id="q15">
+            <option value="">-- Chọn vị trí trọng âm --</option>
+            <option value="1">Âm tiết thứ 1</option>
+            <option value="2">Âm tiết thứ 2</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(15, '1')">Check câu 15</button>
+        <div class="feedback" id="fb15"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">16. Động từ "agree" (đồng ý) có trọng âm rơi vào âm tiết thứ mấy?</div>
+        <select id="q16">
+            <option value="">-- Chọn vị trí trọng âm --</option>
+            <option value="1">Âm tiết thứ 1</option>
+            <option value="2">Âm tiết thứ 2</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(16, '2')">Check câu 16</button>
+        <div class="feedback" id="fb16"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">17. Tính từ "lovely" (dễ thương) có trọng âm rơi vào âm tiết thứ mấy?</div>
+        <select id="q17">
+            <option value="">-- Chọn vị trí trọng âm --</option>
+            <option value="1">Âm tiết thứ 1</option>
+            <option value="2">Âm tiết thứ 2</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(17, '1')">Check câu 17</button>
+        <div class="feedback" id="fb17"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">18. Danh từ "teacher" (giáo viên) có trọng âm rơi vào âm tiết thứ mấy?</div>
+        <select id="q18">
+            <option value="">-- Chọn vị trí trọng âm --</option>
+            <option value="1">Âm tiết thứ 1</option>
+            <option value="2">Âm tiết thứ 2</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(18, '1')">Check câu 18</button>
+        <div class="feedback" id="fb18"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">19. Động từ "enjoy" (thích/thưởng thức) có trọng âm rơi vào âm tiết thứ mấy?</div>
+        <select id="q19">
+            <option value="">-- Chọn vị trí trọng âm --</option>
+            <option value="1">Âm tiết thứ 1</option>
+            <option value="2">Âm tiết thứ 2</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(19, '2')">Check câu 19</button>
+        <div class="feedback" id="fb19"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">20. Danh từ "sister" (chị/em gái) có trọng âm rơi vào âm tiết thứ mấy?</div>
+        <select id="q20">
+            <option value="">-- Chọn vị trí trọng âm --</option>
+            <option value="1">Âm tiết thứ 1</option>
+            <option value="2">Âm tiết thứ 2</option>
+        </select>
+        <button class="btn-check" onclick="checkSelect(20, '1')">Check câu 20</button>
+        <div class="feedback" id="fb20"></div>
+    </div>
+
+
+    <!-- TỔNG KẾT BÀI LÀM -->
+    <div class="summary-box">
+        <h3 style="text-align: center; color: #2b6cb0; margin-top: 0;">KẾT QUẢ BÀI LÀM</h3>
+        <p style="text-align: center; font-size: 15px;">Bấm nút bên dưới để xem tổng điểm và xem lại phần giải thích cho từng câu sai nhé!</p>
+        <button class="btn-submit-all" onclick="calculateScore()">TỔNG KẾT ĐIỂM & XEM GIẢI THÍCH</button>
+        <div id="scoreDisplay"></div>
+        <div id="errorSummary"></div>
+    </div>
+
+</div>
+
+<script>
+    const database = {
+        1: { title: "1. Chọn từ có trọng âm khác:", target: 'C. begin', exp: "<b>'active</b> (tính từ - âm 1), <b>'lovely</b> (tính từ - âm 1), <b>be'gin</b> (động từ - âm 2)." },
+        2: { title: "2. Chọn từ có trọng âm khác:", target: 'B. agree', exp: "<b>'doctor</b> (danh từ - âm 1), <b>a'gree</b> (động từ - âm 2), <b>'teacher</b> (danh từ - âm 1)." },
+        3: { title: "3. Chọn từ có trọng âm khác:", target: 'A. sixteen', exp: "<b>six'teen</b> (đuôi -teen - âm 2), <b>'sixty</b> (đuôi -ty - âm 1), <b>'happy</b> (tính từ - âm 1)." },
+        4: { title: "4. Chọn từ có trọng âm khác:", target: 'C. enjoy', exp: "<b>'sister</b> (danh từ - âm 1), <b>'panda</b> (danh từ - âm 1), <b>en'joy</b> (động từ - âm 2)." },
+        5: { title: "5. Chọn từ có trọng âm khác:", target: 'A. fifteen', exp: "<b>fif'teen</b> (đuôi -teen - âm 2), <b>'fifty</b> (đuôi -ty - âm 1), <b>'thirty</b> (đuôi -ty - âm 1)." },
+        6: { title: "6. Chọn từ có trọng âm khác:", target: 'B. invite', exp: "<b>'finish</b> (động từ đặc biệt - âm 1), <b>in'vite</b> (động từ - âm 2), <b>'answer</b> (động từ đặc biệt - âm 1)." },
+        7: { title: "7. Chọn từ có trọng âm khác:", target: 'C. eighty', exp: "<b>four'teen</b> (đuôi -teen - âm 2), <b>eigh'teen</b> (đuôi -teen - âm 2), <b>'eighty</b> (đuôi -ty - âm 1)." },
+        8: { title: "8. Chọn từ có trọng âm khác:", target: 'C. decide', exp: "<b>'market</b> (danh từ - âm 1), <b>'animal</b> (danh từ - âm 1), <b>de'cide</b> (động từ - âm 2)." },
+        9: { title: "9. Chọn từ có trọng âm khác:", target: 'A. become', exp: "<b>be'come</b> (động từ - âm 2), <b>'clever</b> (tính từ - âm 1), <b>'famous</b> (tính từ - âm 1)." },
+        10: { title: "10. Chọn từ có trọng âm khác:", target: 'A. nineteen', exp: "<b>nine'teen</b> (đuôi -teen - âm 2), <b>'ninety</b> (đuôi -ty - âm 1), <b>'forty</b> (đuôi -ty - âm 1)." },
+        11: { title: "11. Động từ 'begin' (bắt đầu):", target: 'Âm tiết thứ 2', exp: "Động từ 2 âm tiết thường nhấn trọng âm vào âm tiết thứ 2 (be'gin)." },
+        12: { title: "12. Tính từ 'active' (năng động):", target: 'Âm tiết thứ 1', exp: "Tính từ 2 âm tiết thường nhấn trọng âm vào âm tiết thứ 1 ('active)." },
+        13: { title: "13. Danh từ 'doctor' (bác sĩ):", target: 'Âm tiết thứ 1', exp: "Danh từ 2 âm tiết thường nhấn trọng âm vào âm tiết thứ 1 ('doctor)." },
+        14: { title: "14. Số đếm đuôi '-teen':", target: 'Âm tiết thứ 2', exp: "Số đếm đuôi <b>-teen</b> luôn nhận trọng âm chính (âm 2: six'teen)." },
+        15: { title: "15. Số đếm đuôi '-ty':", target: 'Âm tiết thứ 1', exp: "Số tròn chục đuôi <b>-ty</b> luôn có trọng âm ở âm tiết thứ 1 ('sixty)." },
+        16: { title: "16. Động từ 'agree' (đồng ý):", target: 'Âm tiết thứ 2', exp: "Động từ 2 âm tiết nhấn trọng âm vào âm tiết thứ 2 (a'gree)." },
+        17: { title: "17. Tính từ 'lovely' (dễ thương):", target: 'Âm tiết thứ 1', exp: "Tính từ 2 âm tiết nhấn trọng âm vào âm tiết thứ 1 ('lovely)." },
+        18: { title: "18. Danh từ 'teacher' (giáo viên):", target: 'Âm tiết thứ 1', exp: "Danh từ 2 âm tiết nhấn trọng âm vào âm tiết thứ 1 ('teacher)." },
+        19: { title: "19. Động từ 'enjoy' (thích):", target: 'Âm tiết thứ 2', exp: "Động từ 2 âm tiết nhấn trọng âm vào âm tiết thứ 2 (en'joy)." },
+        20: { title: "20. Danh từ 'sister' (chị/em gái):", target: 'Âm tiết thứ 1', exp: "Danh từ 2 âm tiết nhấn trọng âm vào âm tiết thứ 1 ('sister)." }
+    };
+
+    let userResults = new Array(21).fill(0);
+    let userAnswers = new Array(21).fill('');
+
+    function markResult(qNum, isCorrect, userAns) {
+        const fb = document.getElementById('fb' + qNum);
+        fb.style.display = 'block';
+        userAnswers[qNum] = userAns;
+
+        if (isCorrect) {
+            fb.className = 'feedback correct';
+            fb.innerHTML = '✔ Đúng rồi!';
+            userResults[qNum] = 1;
+        } else {
+            fb.className = 'feedback wrong';
+            fb.innerHTML = '✖ Chưa đúng!';
+            userResults[qNum] = 0;
+        }
+    }
+
+    function checkMC(qNum, correctVal) {
+        const selected = document.querySelector('input[name="q' + qNum + '"]:checked');
+        if (!selected) {
+            alert('Em hãy chọn một đáp án trước khi bấm Check nhé!');
+            return;
+        }
+        markResult(qNum, selected.value === correctVal, selected.value);
+    }
+
+    function checkSelect(qNum, correctVal) {
+        const val = document.getElementById('q' + qNum).value;
+        if (val === '') {
+            alert('Em hãy chọn một lựa chọn trước khi bấm Check nhé!');
+            return;
+        }
+        const textDisplay = val === '1' ? 'Âm tiết thứ 1' : 'Âm tiết thứ 2';
+        markResult(qNum, val === correctVal, textDisplay);
+    }
+
+    function calculateScore() {
+        let total = 0;
+        let errorHTML = '';
+
+        for (let i = 1; i <= 20; i++) {
+            if (userResults[i] === 1) {
+                total++;
+            } else {
+                let currentAns = userAnswers[i] ? userAnswers[i] : 'Chưa nhập/Chưa chọn';
+                errorHTML += `
+                    <div class="error-item">
+                        <div class="q-title">📌 ${database[i].title}</div>
+                        - Đáp án của em chọn: <span style="color: #c53030; font-weight: bold;">${currentAns}</span><br>
+                        - Đáp án đúng chuẩn: <span style="color: #2b6cb0; font-weight: bold;">${database[i].target}</span><br>
+                        - <i>Giải thích: ${database[i].exp}</i>
+                    </div>
+                `;
+            }
+        }
+
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        scoreDisplay.innerHTML = `Kết quả bài làm: <span style="color: #2b6cb0;">${total} / 20</span> câu đúng!`;
+
+        const errorSummary = document.getElementById('errorSummary');
+        if (total === 20) {
+            errorSummary.innerHTML = '<div style="color: #2f855a; font-weight: bold; text-align: center; margin-top: 15px;">🎉 Xuất sắc! Em đã làm đúng tất cả 20 câu!</div>';
+        } else {
+            errorSummary.innerHTML = '<h4 style="color: #c53030; margin-top: 20px; margin-bottom: 5px;">DANH SÁCH CÂU SAI VÀ GIẢI THÍCH CHI TIẾT:</h4>' + errorHTML;
+        }
+
+        errorSummary.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
