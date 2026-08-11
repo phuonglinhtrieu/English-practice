@@ -1,0 +1,708 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Unit 2: Healthy Living - Practice Exercises</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            background-color: #f0f4f8;
+            margin: 0;
+            padding: 12px;
+            color: #1a202c;
+            line-height: 1.6;
+            font-size: 16px;
+        }
+        .container {
+            max-width: 780px;
+            margin: 0 auto;
+            background: #ffffff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.06);
+        }
+        h1 {
+            text-align: center;
+            color: #2b6cb0;
+            font-size: 22px;
+            margin-top: 5px;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+        }
+        p.subtitle {
+            text-align: center;
+            color: #718096;
+            font-size: 14px;
+            margin-bottom: 22px;
+        }
+        .section-header {
+            background-color: #3182ce;
+            color: white;
+            padding: 10px 14px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-top: 25px;
+            margin-bottom: 14px;
+        }
+        .q-card {
+            background: #f7fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #4299e1;
+            padding: 12px 15px;
+            margin-bottom: 14px;
+            border-radius: 8px;
+        }
+        .q-text {
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #2d3748;
+        }
+        .options label {
+            display: flex;
+            align-items: center;
+            margin-bottom: 8px;
+            cursor: pointer;
+            font-size: 15px;
+            padding: 8px 10px;
+            background: #ffffff;
+            border-radius: 6px;
+            border: 1px solid #cbd5e0;
+        }
+        .options input[type="radio"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #cbd5e0;
+            border-radius: 6px;
+            font-size: 15px;
+            margin-top: 4px;
+            margin-bottom: 8px;
+            background-color: #fff;
+            appearance: none;
+            -webkit-appearance: none;
+        }
+        .inline-input {
+            width: auto;
+            min-width: 100px;
+            display: inline-block;
+            margin: 0 4px;
+            padding: 4px 8px;
+        }
+        .btn-check {
+            width: 100%;
+            background-color: #38a169;
+            color: white;
+            border: none;
+            padding: 9px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        .btn-check:active {
+            background-color: #2f855a;
+        }
+        .feedback {
+            margin-top: 8px;
+            padding: 8px 12px;
+            border-radius: 6px;
+            font-size: 14px;
+            display: none;
+            font-weight: bold;
+        }
+        .feedback.correct {
+            background-color: #c6f6d5;
+            color: #22543d;
+            border: 1px solid #9ae6b4;
+        }
+        .feedback.wrong {
+            background-color: #fed7d7;
+            color: #742a2a;
+            border: 1px solid #feb2b2;
+        }
+        .summary-box {
+            margin-top: 30px;
+            padding: 18px;
+            background: #ebf8ff;
+            border: 2px dashed #3182ce;
+            border-radius: 10px;
+        }
+        .btn-submit-all {
+            width: 100%;
+            background-color: #2b6cb0;
+            color: white;
+            border: none;
+            padding: 12px;
+            font-size: 16px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        #scoreDisplay {
+            font-size: 18px;
+            font-weight: bold;
+            color: #2b6cb0;
+            margin-top: 12px;
+            text-align: center;
+        }
+        .error-item {
+            background: #ffffff;
+            border: 1px solid #feb2b2;
+            border-left: 4px solid #e53e3e;
+            padding: 12px;
+            margin-top: 12px;
+            border-radius: 6px;
+            font-size: 14px;
+        }
+        .error-item .q-title {
+            font-weight: bold;
+            color: #2d3748;
+            margin-bottom: 4px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>UNIT 2: HEALTHY LIVING</h1>
+    <p class="subtitle">Em hãy làm lần lượt từng câu, kiểm tra kết quả và xem giải thích chi tiết ở cuối bài nhé!</p>
+
+    <!-- EXERCISE 3 -->
+    <div class="section-header">Exercise 3. Write a simple sentence from the two given sentences.</div>
+
+    <div class="q-card">
+        <div class="q-text">1. I usually eat vegetables. I usually eat fruit.</div>
+        <input type="text" id="q1" placeholder="Nhập câu trả lời của bạn..." autocomplete="off" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(1, ['I usually eat vegetables and fruit.', 'I usually eat vegetables and fruit'])">Check câu 1</button>
+        <div class="feedback" id="fb1"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">2. My brother likes eating beef. I like eating beef.</div>
+        <input type="text" id="q2" placeholder="Nhập câu trả lời của bạn..." autocomplete="off" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(2, ['My brother and I like eating beef.', 'My brother and I like eating beef'])">Check câu 2</button>
+        <div class="feedback" id="fb2"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">3. Jane goes jogging every morning. Her mother goes jogging every morning.</div>
+        <input type="text" id="q3" placeholder="Nhập câu trả lời của bạn..." autocomplete="off" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(3, ['Jane and her mother go jogging every morning.', 'Jane and her mother go jogging every morning', 'Jane\'s mother and Jane go jogging every morning.'])">Check câu 3</button>
+        <div class="feedback" id="fb3"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">4. I hate fast food. I hate soft drinks.</div>
+        <input type="text" id="q4" placeholder="Nhập câu trả lời của bạn..." autocomplete="off" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(4, ['I hate fast food and soft drinks.', 'I hate fast food and soft drinks'])">Check câu 4</button>
+        <div class="feedback" id="fb4"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">5. Do you like tomatoes? Do you like potatoes?</div>
+        <input type="text" id="q5" placeholder="Nhập câu trả lời của bạn..." autocomplete="off" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(5, ['Do you like tomatoes and potatoes?', 'Do you like tomatoes or potatoes?', 'Do you like tomatoes and potatoes', 'Do you like tomatoes or potatoes'])">Check câu 5</button>
+        <div class="feedback" id="fb5"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">6. You should wear suncream. You should wear a hat.</div>
+        <input type="text" id="q6" placeholder="Nhập câu trả lời của bạn..." autocomplete="off" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(6, ['You should wear suncream and a hat.', 'You should wear suncream and a hat'])">Check câu 6</button>
+        <div class="feedback" id="fb6"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">7. Tofu has vegetable protein. Tofu has vitamin B.</div>
+        <input type="text" id="q7" placeholder="Nhập câu trả lời của bạn..." autocomplete="off" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(7, ['Tofu has vegetable protein and vitamin B.', 'Tofu has vegetable protein and vitamin B'])">Check câu 7</button>
+        <div class="feedback" id="fb7"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">8. I have chapped lips. I have chapped skin.</div>
+        <input type="text" id="q8" placeholder="Nhập câu trả lời của bạn..." autocomplete="off" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(8, ['I have chapped lips and chapped skin.', 'I have chapped lips and skin.', 'I have chapped lips and skin'])">Check câu 8</button>
+        <div class="feedback" id="fb8"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">9. You shouldn't touch spots. You shouldn't pop spots.</div>
+        <input type="text" id="q9" placeholder="Nhập câu trả lời của bạn..." autocomplete="off" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(9, ['You shouldn\'t touch or pop spots.', 'You shouldn\'t touch and pop spots.', 'You shouldn\'t touch or pop spots', 'You shouldn\'t touch and pop spots'])">Check câu 9</button>
+        <div class="feedback" id="fb9"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">10. We should go to bed early. We should get enough sleep.</div>
+        <input type="text" id="q10" placeholder="Nhập câu trả lời của bạn..." autocomplete="off" spellcheck="false">
+        <button class="btn-check" onclick="checkSentence(10, ['We should go to bed early and get enough sleep.', 'We should go to bed early and get enough sleep'])">Check câu 10</button>
+        <div class="feedback" id="fb10"></div>
+    </div>
+
+
+    <!-- EXERCISE 4 -->
+    <div class="section-header">Exercise 4. Choose the correct answers.</div>
+
+    <div class="q-card">
+        <div class="q-text">1. Eat less fast food, _______ you will be healthier.</div>
+        <div class="options">
+            <label><input type="radio" name="q11" value="A"> A. and</label>
+            <label><input type="radio" name="q11" value="B"> B. or</label>
+            <label><input type="radio" name="q11" value="C"> C. but</label>
+            <label><input type="radio" name="q11" value="D"> D. if</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(11, 'A')">Check câu 11</button>
+        <div class="feedback" id="fb11"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">2. Eat more red vegetables and fruit _______ they are good for your eyes.</div>
+        <div class="options">
+            <label><input type="radio" name="q12" value="A"> A. so</label>
+            <label><input type="radio" name="q12" value="B"> B. but</label>
+            <label><input type="radio" name="q12" value="C"> C. or</label>
+            <label><input type="radio" name="q12" value="D"> D. because</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(12, 'D')">Check câu 12</button>
+        <div class="feedback" id="fb12"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">3. Use eyedrops _______ you are doing a lot of reading.</div>
+        <div class="options">
+            <label><input type="radio" name="q13" value="A"> A. and</label>
+            <label><input type="radio" name="q13" value="B"> B. when</label>
+            <label><input type="radio" name="q13" value="C"> C. or</label>
+            <label><input type="radio" name="q13" value="D"> D. but</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(13, 'B')">Check câu 13</button>
+        <div class="feedback" id="fb13"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">4. You can eat either spinach _______ cabbage.</div>
+        <div class="options">
+            <label><input type="radio" name="q14" value="A"> A. and</label>
+            <label><input type="radio" name="q14" value="B"> B. but</label>
+            <label><input type="radio" name="q14" value="C"> C. or</label>
+            <label><input type="radio" name="q14" value="D"> D. nor</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(14, 'C')">Check câu 14</button>
+        <div class="feedback" id="fb14"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">5. Don't read in dim light, _______ it will ruin your eyesight.</div>
+        <div class="options">
+            <label><input type="radio" name="q15" value="A"> A. or</label>
+            <label><input type="radio" name="q15" value="B"> B. and</label>
+            <label><input type="radio" name="q15" value="C"> C. but</label>
+            <label><input type="radio" name="q15" value="D"> D. so</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(15, 'A')">Check câu 15</button>
+        <div class="feedback" id="fb15"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">6. Laughter _______ love are good for your health.</div>
+        <div class="options">
+            <label><input type="radio" name="q16" value="A"> A. nor</label>
+            <label><input type="radio" name="q16" value="B"> B. or</label>
+            <label><input type="radio" name="q16" value="C"> C. and</label>
+            <label><input type="radio" name="q16" value="D"> D. but</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(16, 'C')">Check câu 16</button>
+        <div class="feedback" id="fb16"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">7. Acne is not a serious disease, _______ young people always want to avoid it.</div>
+        <div class="options">
+            <label><input type="radio" name="q17" value="A"> A. because</label>
+            <label><input type="radio" name="q17" value="B"> B. when</label>
+            <label><input type="radio" name="q17" value="C"> C. but</label>
+            <label><input type="radio" name="q17" value="D"> D. and</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(17, 'C')">Check câu 17</button>
+        <div class="feedback" id="fb17"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">8. My brother likes running _______ cycling.</div>
+        <div class="options">
+            <label><input type="radio" name="q18" value="A"> A. so</label>
+            <label><input type="radio" name="q18" value="B"> B. and</label>
+            <label><input type="radio" name="q18" value="C"> C. as</label>
+            <label><input type="radio" name="q18" value="D"> D. or</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(18, 'B')">Check câu 18</button>
+        <div class="feedback" id="fb18"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">9. Stand up every hour _______ do some simple exercise to reduce sitting time.</div>
+        <div class="options">
+            <label><input type="radio" name="q19" value="A"> A. since</label>
+            <label><input type="radio" name="q19" value="B"> B. and</label>
+            <label><input type="radio" name="q19" value="C"> C. or</label>
+            <label><input type="radio" name="q19" value="D"> D. but</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(19, 'B')">Check câu 19</button>
+        <div class="feedback" id="fb19"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">10. Don't eat a lot of meat _______ snacks.</div>
+        <div class="options">
+            <label><input type="radio" name="q20" value="A"> A. and</label>
+            <label><input type="radio" name="q20" value="B"> B. or</label>
+            <label><input type="radio" name="q20" value="C"> C. so</label>
+            <label><input type="radio" name="q20" value="D"> D. while</label>
+        </div>
+        <button class="btn-check" onclick="checkMC(20, 'B')">Check câu 20</button>
+        <div class="feedback" id="fb20"></div>
+    </div>
+
+
+    <!-- EXERCISE 5 -->
+    <div class="section-header">Exercise 5. Fill in the blanks with a suitable conjunction (and / or / but).</div>
+
+    <div class="q-card">
+        <div class="q-text">1. You should be active _______ exercise every day.</div>
+        <input type="text" id="q21" placeholder="Nhập and / or / but..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(21, ['and'])">Check câu 21</button>
+        <div class="feedback" id="fb21"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">2. Fruit _______ vegetables provide us with folate, vitamin C _______ potassium.</div>
+        <div>
+            a) Ô trống 1: <input type="text" id="q22_1" class="inline-input" placeholder="and/or/but">
+            b) Ô trống 2: <input type="text" id="q22_2" class="inline-input" placeholder="and/or/but">
+        </div>
+        <button class="btn-check" onclick="checkMultiFill(22, ['and', 'and'])">Check câu 22</button>
+        <div class="feedback" id="fb22"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">3. Healthy food _______ exercise help people keep fit.</div>
+        <input type="text" id="q23" placeholder="Nhập and / or / but..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(23, ['and'])">Check câu 23</button>
+        <div class="feedback" id="fb23"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">4. That weather is too hot _______ too cold affects your skin condition.</div>
+        <input type="text" id="q24" placeholder="Nhập and / or / but..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(24, ['or'])">Check câu 24</button>
+        <div class="feedback" id="fb24"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">5. Which do you prefer, juice _______ soda?</div>
+        <input type="text" id="q25" placeholder="Nhập and / or / but..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(25, ['or'])">Check câu 25</button>
+        <div class="feedback" id="fb25"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">6. We can exercise either indoors _______ outdoors.</div>
+        <input type="text" id="q26" placeholder="Nhập and / or / but..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(26, ['or'])">Check câu 26</button>
+        <div class="feedback" id="fb26"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">7. Asians eat a lot of rice, _______ Europeans don't.</div>
+        <input type="text" id="q27" placeholder="Nhập and / or / but..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(27, ['but'])">Check câu 27</button>
+        <div class="feedback" id="fb27"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">8. Physical health is important, _______ mental health is important, too.</div>
+        <input type="text" id="q28" placeholder="Nhập and / or / but..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(28, ['and', 'but'])">Check câu 28</button>
+        <div class="feedback" id="fb28"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">9. Do you like eating chicken _______ fish?</div>
+        <input type="text" id="q29" placeholder="Nhập and / or / but..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(29, ['or', 'and'])">Check câu 29</button>
+        <div class="feedback" id="fb29"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">10. Orange carrots _______ red tomatoes contain vitamin A.</div>
+        <input type="text" id="q30" placeholder="Nhập and / or / but..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(30, ['and'])">Check câu 30</button>
+        <div class="feedback" id="fb30"></div>
+    </div>
+
+
+    <!-- EXERCISE 6 -->
+    <div class="section-header">Exercise 6. Fill in the blanks with a suitable preposition.</div>
+
+    <div class="q-card">
+        <div class="q-text">1. White cauliflower is rich _______ vitamin C.</div>
+        <input type="text" id="q31" placeholder="Điền giới từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(31, ['in'])">Check câu 31</button>
+        <div class="feedback" id="fb31"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">2. Vegetables come _______ different shapes, sizes, and colours.</div>
+        <input type="text" id="q32" placeholder="Điền giới từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(32, ['in'])">Check câu 32</button>
+        <div class="feedback" id="fb32"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">3. The Spanish suffer _______ fewer diseases than the rest _______ the world.</div>
+        <div>
+            a) Ô trống 1: <input type="text" id="q33_1" class="inline-input" placeholder="giới từ">
+            b) Ô trống 2: <input type="text" id="q33_2" class="inline-input" placeholder="giới từ">
+        </div>
+        <button class="btn-check" onclick="checkMultiFill(33, ['from', 'of'])">Check câu 33</button>
+        <div class="feedback" id="fb33"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">4. Salt and sugar put us _______ the risk _______ heart disease.</div>
+        <div>
+            a) Ô trống 1: <input type="text" id="q34_1" class="inline-input" placeholder="giới từ">
+            b) Ô trống 2: <input type="text" id="q34_2" class="inline-input" placeholder="giới từ">
+        </div>
+        <button class="btn-check" onclick="checkMultiFill(34, ['at', 'of'])">Check câu 34</button>
+        <div class="feedback" id="fb34"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">5. Remember to wash your hands _______ soap and water regularly.</div>
+        <input type="text" id="q35" placeholder="Điền giới từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(35, ['with'])">Check câu 35</button>
+        <div class="feedback" id="fb35"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">6. I think you shouldn't eat too much junk food because you are putting _______ weight, Jane.</div>
+        <input type="text" id="q36" placeholder="Điền giới từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(36, ['on'])">Check câu 36</button>
+        <div class="feedback" id="fb36"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">7. Fish provides omega-3 fatty acids and vitamins such as D and B2 _______ us.</div>
+        <input type="text" id="q37" placeholder="Điền giới từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(37, ['for', 'to'])">Check câu 37</button>
+        <div class="feedback" id="fb37"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">8. Do you have any tips _______ taking care _______ skin _______ acne, Amanda?</div>
+        <div>
+            a) Ô trống 1: <input type="text" id="q38_1" class="inline-input" placeholder="giới từ">
+            b) Ô trống 2: <input type="text" id="q38_2" class="inline-input" placeholder="giới từ">
+            c) Ô trống 3: <input type="text" id="q38_3" class="inline-input" placeholder="giới từ">
+        </div>
+        <button class="btn-check" onclick="checkMultiFill(38, ['for/on', 'of', 'with'])">Check câu 38</button>
+        <div class="feedback" id="fb38"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">9. You should clean _______ your bedroom and change your pillow cover regularly.</div>
+        <input type="text" id="q39" placeholder="Điền giới từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(39, ['up'])">Check câu 39</button>
+        <div class="feedback" id="fb39"></div>
+    </div>
+
+    <div class="q-card">
+        <div class="q-text">10. My mother usually has a bowl of Greek yogurt oatmeal to stay _______ shape.</div>
+        <input type="text" id="q40" placeholder="Điền giới từ..." autocomplete="off">
+        <button class="btn-check" onclick="checkFill(40, ['in'])">Check câu 40</button>
+        <div class="feedback" id="fb40"></div>
+    </div>
+
+
+    <!-- SUMMARY BOX -->
+    <div class="summary-box">
+        <h3 style="text-align: center; color: #2b6cb0; margin-top: 0;">KẾT QUẢ BÀI LÀM TỔNG HỢP</h3>
+        <p style="text-align: center; font-size: 14px;">Bấm nút bên dưới để xem điểm số toàn bài và lời giải thích chi tiết!</p>
+        <button class="btn-submit-all" onclick="calculateScore()">TỔNG KẾT ĐIỂM & XEM GIẢI THÍCH CHI TIẾT</button>
+        <div id="scoreDisplay"></div>
+        <div id="errorSummary"></div>
+    </div>
+
+</div>
+
+<script>
+    const database = {
+        // Exercise 3
+        1: { title: "Ex 3 - C1: I usually eat vegetables. I usually eat fruit.", target: "I usually eat vegetables and fruit.", exp: "Nối hai danh từ cùng làm tân ngữ (vegetables, fruit) bằng liên từ 'and'." },
+        2: { title: "Ex 3 - C2: My brother likes eating beef. I like eating beef.", target: "My brother and I like eating beef.", exp: "Nối hai chủ ngữ (My brother, I) bằng liên từ 'and'." },
+        3: { title: "Ex 3 - C3: Jane goes jogging every morning. Her mother goes jogging every morning.", target: "Jane and her mother go jogging every morning.", exp: "Gộp hai chủ ngữ (Jane and her mother) -> Động từ chuyển sang dạng số nhiều 'go'." },
+        4: { title: "Ex 3 - C4: I hate fast food. I hate soft drinks.", target: "I hate fast food and soft drinks.", exp: "Nối hai tân ngữ (fast food, soft drinks) cùng sau động từ 'hate'." },
+        5: { title: "Ex 3 - C5: Do you like tomatoes? Do you like potatoes?", target: "Do you like tomatoes and/or potatoes?", exp: "Rút gọn hai câu hỏi lựa chọn/liệt kê cùng chủ ngữ và động từ." },
+        6: { title: "Ex 3 - C6: You should wear suncream. You should wear a hat.", target: "You should wear suncream and a hat.", exp: "Nối hai tân ngữ (suncream, a hat) cùng đi với động từ 'wear'." },
+        7: { title: "Ex 3 - C7: Tofu has vegetable protein. Tofu has vitamin B.", target: "Tofu has vegetable protein and vitamin B.", exp: "Gộp hai thành phần chất dinh dưỡng cùng thuộc chủ ngữ Tofu." },
+        8: { title: "Ex 3 - C8: I have chapped lips. I have chapped skin.", target: "I have chapped lips and (chapped) skin.", exp: "Nối hai vùng da bị nẻ bằng liên từ 'and'." },
+        9: { title: "Ex 3 - C9: You shouldn't touch spots. You shouldn't pop spots.", target: "You shouldn't touch or/and pop spots.", exp: "Trong câu phủ định, dùng 'or' (hoặc 'and') để nối hai hành động không nên làm." },
+        10: { title: "Ex 3 - C10: We should go to bed early. We should get enough sleep.", target: "We should go to bed early and get enough sleep.", exp: "Nối hai hành động khuyên dùng chung modal verb 'should'." },
+
+        // Exercise 4
+        11: { title: "Ex 4 - C1: Eat less fast food, _______ you will be healthier.", target: "A. and", exp: "Cấu trúc câu mệnh lệnh + and + S + V: 'Hãy ăn ít đồ ăn nhanh, và bạn sẽ khỏe mạnh hơn'." },
+        12: { title: "Ex 4 - C2: Eat more red vegetables and fruit _______ they are good for your eyes.", target: "D. because", exp: "Dùng 'because' để chỉ nguyên do/lý do tốt cho mắt." },
+        13: { title: "Ex 4 - C3: Use eyedrops _______ you are doing a lot of reading.", target: "B. when", exp: "Dùng 'when' (khi) chỉ thời điểm cần sử dụng thuốc nhỏ mắt." },
+        14: { title: "Ex 4 - C4: You can eat either spinach _______ cabbage.", target: "C. or", exp: "Cấu trúc đi kèm cố định: 'either... or...' (hoặc cái này... hoặc cái kia...)." },
+        15: { title: "Ex 4 - C5: Don't read in dim light, _______ it will ruin your eyesight.", target: "A. or", exp: "Cấu trúc câu mệnh lệnh phủ định + or + S + V: 'Đừng đọc sách nơi ánh sáng yếu, kẻo/nếu không sẽ hỏng mắt'." },
+        16: { title: "Ex 4 - C6: Laughter _______ love are good for your health.", target: "C. and", exp: "Nối hai danh từ chỉ đối tượng đồng cấp 'Laughter and love' (Tiếng cười và tình yêu)." },
+        17: { title: "Ex 4 - C7: Acne is not a serious disease, _______ young people always want to avoid it.", target: "C. but", exp: "Chỉ sự đối lập: Mụn không phải bệnh nghiêm trọng, NƯNG giới trẻ luôn muốn tránh." },
+        18: { title: "Ex 4 - C8: My brother likes running _______ cycling.", target: "B. and", exp: "Liệt kê hai sở thích thể thao đồng cấp: running and cycling." },
+        19: { title: "Ex 4 - C9: Stand up every hour _______ do some simple exercise...", target: "B. and", exp: "Nối hai hành động song song khuyên làm: Hãy đứng dậy... và tập vài bài đơn giản." },
+        20: { title: "Ex 4 - C10: Don't eat a lot of meat _______ snacks.", target: "B. or", exp: "Trong câu phủ định (Don't eat...), dùng 'or' có nghĩa là 'không ăn nhiều thịt HOẶC đồ ăn vặt'." },
+
+        // Exercise 5
+        21: { title: "Ex 5 - C1: You should be active _______ exercise every day.", target: "and", exp: "Chỉ hai hành động bổ sung cho nhau: Năng động VÀ tập thể dục." },
+        22: { title: "Ex 5 - C2: Fruit _______ vegetables provide us with folate, vitamin C _______ potassium.", target: "and - and", exp: "Liệt kê danh mục thực phẩm (Fruit and vegetables) và dưỡng chất (...vitamin C and potassium)." },
+        23: { title: "Ex 5 - C3: Healthy food _______ exercise help people keep fit.", target: "and", exp: "Cả thức ăn lành mạnh VÀ việc tập luyện giúp giữ dáng." },
+        24: { title: "Ex 5 - C4: That weather is too hot _______ too cold affects...", target: "or", exp: "Dùng 'or' thể hiện sự lựa chọn/hoặc điều kiện: Thời tiết Quá nóng HOẶC Quá lạnh." },
+        25: { title: "Ex 5 - C5: Which do you prefer, juice _______ soda?", target: "or", exp: "Câu hỏi lựa chọn 'Which...': Bạn thích nước ép HOẶC soda hơn?" },
+        26: { title: "Ex 5 - C6: We can exercise either indoors _______ outdoors.", target: "or", exp: "Cấu trúc song hành: 'either... or...' (ở trong nhà hoặc ngoài trời)." },
+        27: { title: "Ex 5 - C7: Asians eat a lot of rice, _______ Europeans don't.", target: "but", exp: "Diễn tả sự tương phản: Người châu Á ăn nhiều cơm, NHƯNG người châu Âu thì không." },
+        28: { title: "Ex 5 - C8: Physical health is important, _______ mental health is important, too.", target: "and (hoặc but)", exp: "Nối hai vế câu có ý nghĩa tương đương/bổ sung." },
+        29: { title: "Ex 5 - C9: Do you like eating chicken _______ fish?", target: "or", exp: "Câu hỏi lựa chọn giữa hai món ăn." },
+        30: { title: "Ex 30 - C10: Orange carrots _______ red tomatoes contain vitamin A.", target: "and", exp: "Nối hai loại thực phẩm chứa Vitamin A." },
+
+        // Exercise 6
+        31: { title: "Ex 6 - C1: White cauliflower is rich _______ vitamin C.", target: "in", exp: "Cụm từ cố định: 'be rich in something' (giàu/chứa nhiều chất gì)." },
+        32: { title: "Ex 6 - C2: Vegetables come _______ different shapes...", target: "in", exp: "Cụm từ: 'come in shapes/colors' (có nhiều hình dáng/màu sắc)." },
+        33: { title: "Ex 6 - C3: The Spanish suffer _______ fewer diseases than the rest _______ the world.", target: "from - of", exp: "Cụm từ: 'suffer from' (chịu đựng/mắc bệnh) và 'the rest of the world' (phần còn lại của thế giới)." },
+        34: { title: "Ex 6 - C4: Salt and sugar put us _______ the risk _______ heart disease.", target: "at - of", exp: "Cụm từ cố định: 'put someone at risk of something' (đặt ai vào nguy cơ mắc bệnh gì)." },
+        35: { title: "Ex 6 - C5: Remember to wash your hands _______ soap...", target: "with", exp: "Dùng giới từ 'with' (với/bằng) chỉ phương tiện rửa tay: with soap and water." },
+        36: { title: "Ex 6 - C6: ...because you are putting _______ weight.", target: "on", exp: "Cụm động từ: 'put on weight' (tăng cân)." },
+        37: { title: "Ex 6 - C7: Fish provides omega-3... _______ us.", target: "for (hoặc to)", exp: "Cấu trúc: 'provide something for/to someone' (cung cấp cái gì cho ai)." },
+        38: { title: "Ex 6 - C8: ...tips _______ taking care _______ skin _______ acne...", target: "for/on - of - with", exp: "Cụm từ: 'tips for' (mẹo cho việc gì), 'take care of' (chăm sóc), 'skin with acne' (da bị mụn)." },
+        39: { title: "Ex 6 - C9: You should clean _______ your bedroom...", target: "up", exp: "Cụm động từ: 'clean up' (dọn dẹp vệ sinh sạch sẽ)." },
+        40: { title: "Ex 6 - C10: ...to stay _______ shape.", target: "in", exp: "Cụm từ cố định: 'stay in shape' (giữ vóc dáng cân đối)." }
+    };
+
+    let userResults = new Array(41).fill(0);
+    let userAnswers = new Array(41).fill('');
+
+    function cleanStr(str) {
+        return str.toLowerCase().replace(/[^a-z0-9]/g, '');
+    }
+
+    function markResult(qNum, isCorrect, userAns) {
+        const fb = document.getElementById('fb' + qNum);
+        fb.style.display = 'block';
+        userAnswers[qNum] = userAns;
+
+        if (isCorrect) {
+            fb.className = 'feedback correct';
+            fb.innerHTML = '✔ Đúng rồi!';
+            userResults[qNum] = 1;
+        } else {
+            fb.className = 'feedback wrong';
+            fb.innerHTML = '✖ Chưa đúng!';
+            userResults[qNum] = 0;
+        }
+    }
+
+    function checkSentence(qNum, validList) {
+        const val = document.getElementById('q' + qNum).value.trim();
+        if (!val) {
+            alert('Em hãy nhập câu trả lời trước khi bấm Check nhé!');
+            return;
+        }
+        const userClean = cleanStr(val);
+        const isCorrect = validList.some(ans => cleanStr(ans) === userClean);
+        markResult(qNum, isCorrect, val);
+    }
+
+    function checkMC(qNum, correctVal) {
+        const selected = document.querySelector('input[name="q' + qNum + '"]:checked');
+        if (!selected) {
+            alert('Em hãy chọn 1 đáp án trước khi bấm Check nhé!');
+            return;
+        }
+        markResult(qNum, selected.value === correctVal, selected.value);
+    }
+
+    function checkFill(qNum, validList) {
+        const val = document.getElementById('q' + qNum).value.trim().toLowerCase();
+        if (!val) {
+            alert('Em hãy điền vào ô trống trước khi bấm Check nhé!');
+            return;
+        }
+        const isCorrect = validList.some(ans => ans.toLowerCase() === val);
+        markResult(qNum, isCorrect, val);
+    }
+
+    function checkMultiFill(qNum, correctList) {
+        let isCorrect = true;
+        let ansArr = [];
+        for (let i = 1; i <= correctList.length; i++) {
+            const inputEl = document.getElementById(`q${qNum}_${i}`);
+            const val = inputEl ? inputEl.value.trim().toLowerCase() : '';
+            ansArr.push(val || 'Chưa điền');
+            
+            // Xử lý chấp nhận nhiều đáp án phân cách bằng dấu /
+            const accepted = correctList[i-1].toLowerCase().split('/');
+            if (!accepted.includes(val)) {
+                isCorrect = false;
+            }
+        }
+        markResult(qNum, isCorrect, ansArr.join(' - '));
+    }
+
+    function calculateScore() {
+        let total = 0;
+        let errorHTML = '';
+
+        for (let i = 1; i <= 40; i++) {
+            if (userResults[i] === 1) {
+                total++;
+            } else {
+                let currentAns = userAnswers[i] ? userAnswers[i] : 'Chưa nhập/Chưa chọn';
+                errorHTML += `
+                    <div class="error-item">
+                        <div class="q-title">📌 ${database[i].title}</div>
+                        - Đáp án của em: <span style="color: #c53030; font-weight: bold;">${currentAns}</span><br>
+                        - Đáp án đúng chuẩn: <span style="color: #2b6cb0; font-weight: bold;">${database[i].target}</span><br>
+                        - <i>Giải thích: ${database[i].exp}</i>
+                    </div>
+                `;
+            }
+        }
+
+        const scoreDisplay = document.getElementById('scoreDisplay');
+        scoreDisplay.innerHTML = `Kết quả bài làm: <span style="color: #2b6cb0;">${total} / 40</span> câu đúng!`;
+
+        const errorSummary = document.getElementById('errorSummary');
+        if (total === 40) {
+            errorSummary.innerHTML = '<div style="color: #2f855a; font-weight: bold; text-align: center; margin-top: 15px;">🎉 Xuất sắc! Em đã làm đúng tất cả 40 câu!</div>';
+        } else {
+            errorSummary.innerHTML = '<h4 style="color: #c53030; margin-top: 20px; margin-bottom: 5px;">DANH SÁCH CÂU CHƯA ĐÚNG & GIẢI THÍCH CHI TIẾT:</h4>' + errorHTML;
+        }
+
+        errorSummary.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
