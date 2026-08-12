@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bài Tập Vận Dụng Nâng Cao</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+            background-color: #f0f4f8;
+            padding: 20px;
+            max-width: 850px;
+            margin: 0 auto;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+        }
+        h1 {
+            color: #d35400;
+            font-size: 22px;
+            background: #fef5e7;
+            padding: 10px 15px;
+            border-left: 5px solid #e67e22;
+            margin-top: 0;
+            border-radius: 4px;
+        }
+        h2 {
+            color: #2c3e50;
+            font-size: 18px;
+            margin-top: 25px;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 8px;
+        }
+        .question-box {
+            margin-bottom: 20px;
+            padding: 15px;
+            background: #f8f9fa;
+            border-left: 4px solid #3498db;
+            border-radius: 6px;
+        }
+        .q-title {
+            font-size: 16px;
+            font-weight: 600;
+            color: #2c3e50;
+            margin-bottom: 10px;
+            line-height: 1.5;
+        }
+        .options-list {
+            margin: 8px 0;
+            font-weight: 500;
+            color: #34495e;
+        }
+        .underline-item {
+            text-decoration: underline;
+            font-weight: bold;
+        }
+        .input-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-top: 8px;
+        }
+        input[type="text"] {
+            width: 100%;
+            padding: 10px 14px;
+            font-size: 15px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        input[type="text"]:focus {
+            border-color: #3498db;
+            box-shadow: 0 0 5px rgba(52, 152, 219, 0.3);
+        }
+        input.correct {
+            border-color: #2ecc71;
+            background-color: #e8f8f5;
+            color: #27ae60;
+            font-weight: bold;
+        }
+        input.incorrect {
+            border-color: #e74c3c;
+            background-color: #fadbd8;
+            color: #c0392b;
+            font-weight: bold;
+        }
+        .btn-submit {
+            background-color: #27ae60;
+            color: white;
+            border: none;
+            padding: 14px 28px;
+            font-size: 17px;
+            font-weight: bold;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin-top: 25px;
+            transition: background 0.3s;
+        }
+        .btn-submit:hover {
+            background-color: #2196f3;
+        }
+        /* Bảng kết quả */
+        #result-section {
+            display: none;
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 8px;
+            background: #f1f5f9;
+        }
+        .score-board {
+            text-align: center;
+            font-size: 22px;
+            font-weight: bold;
+            color: #1e293b;
+            margin-bottom: 20px;
+        }
+        .explain-box {
+            background: white;
+            padding: 15px;
+            border-radius: 6px;
+            margin-bottom: 15px;
+            border-left: 5px solid #e74c3c;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .explain-title {
+            font-weight: bold;
+            color: #c0392b;
+            margin-bottom: 6px;
+            font-size: 15px;
+        }
+        .correct-ans {
+            color: #27ae60;
+            font-weight: bold;
+        }
+        .explain-detail {
+            font-size: 14px;
+            color: #475569;
+            margin-top: 6px;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>Bài tập vận dụng nâng cao</h1>
+
+    <!-- TASK 1 -->
+    <h2>Task 1: Give the correct forms of verbs</h2>
+
+    <div class="question-box">
+        <div class="q-title">1. What( be) he like? - He( be) friendly.</div>
+        <div class="input-group">
+            <input type="text" id="q1" placeholder="Nhập dạng đúng của động từ (ví dụ: is - is)">
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="q-title">2. What nationality(be) your friends? - They(be) American.</div>
+        <div class="input-group">
+            <input type="text" id="q2" placeholder="Nhập dạng đúng của động từ (ví dụ: are - are)">
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="q-title">3. What she(do) now? - She( play) table tennis.</div>
+        <div class="input-group">
+            <input type="text" id="q3" placeholder="Nhập dạng đúng của động từ (ví dụ: is she doing - is playing)">
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="q-title">4. Where your sister( live)? - She ( live) in the city.</div>
+        <div class="input-group">
+            <input type="text" id="q4" placeholder="Nhập dạng đúng của động từ (ví dụ: does your sister live - lives)">
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="q-title">5. Where( be) you last week? - I( be) at the campsite.</div>
+        <div class="input-group">
+            <input type="text" id="q5" placeholder="Nhập dạng đúng của động từ (ví dụ: were - was)">
+        </div>
+    </div>
+
+    <!-- TASK 2 -->
+    <h2>Task 2: Find and correct the mistakes</h2>
+
+    <div class="question-box">
+        <div class="q-title">1. <span class="underline-item">What</span> (A) <span class="underline-item">does</span> (B) he like? - <span class="underline-item">He</span> (C) <span class="underline-item">is</span> (D) active.</div>
+        <div class="input-group">
+            <input type="text" id="q6" placeholder="Nhập đáp án sai (A, B, C, D) hoặc từ sửa lại...">
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="q-title">2. <span class="underline-item">Does</span> (A) you <span class="underline-item">have</span> (B) <span class="underline-item">a new</span> (C) English <span class="underline-item">teacher</span> (D)?</div>
+        <div class="input-group">
+            <input type="text" id="q7" placeholder="Nhập đáp án sai (A, B, C, D) hoặc từ sửa lại...">
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="q-title">3. <span class="underline-item">There is</span> (A) <span class="underline-item">an</span> (B) new <span class="underline-item">pupil</span> (C) <span class="underline-item">in our</span> (D) class.</div>
+        <div class="input-group">
+            <input type="text" id="q8" placeholder="Nhập đáp án sai (A, B, C, D) hoặc từ sửa lại...">
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="q-title">4. She <span class="underline-item">is</span> (A) from <span class="underline-item">Malaysian</span> (B). She <span class="underline-item">is</span> (C) <span class="underline-item">Malaysian</span> (D).</div>
+        <div class="input-group">
+            <input type="text" id="q9" placeholder="Nhập đáp án sai (A, B, C, D) hoặc từ sửa lại...">
+        </div>
+    </div>
+
+    <div class="question-box">
+        <div class="q-title">5. <span class="underline-item">Hoa's mother</span> (A) is <span class="underline-item">friend</span> (B). She <span class="underline-item">likes</span> (C) <span class="underline-item">helping</span> (D) others.</div>
+        <div class="input-group">
+            <input type="text" id="q10" placeholder="Nhập đáp án sai (A, B, C, D) hoặc từ sửa lại...">
+        </div>
+    </div>
+
+    <button type="button" class="btn-submit" onclick="checkQuiz()">NỘP BÀI KIỂM TRA</button>
+
+    <div id="result-section">
+        <div class="score-board" id="score-text"></div>
+        <div id="explanation-container"></div>
+    </div>
+</div>
+
+<script>
+    // Dữ liệu đáp án & Giải thích chi tiết cho từng câu
+    const quizData = [
+        // Task 1
+        {
+            id: "q1",
+            task: "Task 1 - Câu 1",
+            validAnswers: ["is - is", "is/is", "is, is", "is is", "is - he is", "is"],
+            displayAnswer: "is - is",
+            explain: "Hỏi về tính cách dùng cấu trúc: <b>What + be + S + like?</b> -> Chủ ngữ 'he' đi với động từ to be là <b>is</b>. Trả lời: <b>He is friendly.</b>"
+        },
+        {
+            id: "q2",
+            task: "Task 1 - Câu 2",
+            validAnswers: ["are - are", "are/are", "are, are", "are are", "are"],
+            displayAnswer: "are - are",
+            explain: "Hỏi về quốc tịch: <b>What nationality + be + S?</b> -> Chủ ngữ số nhiều 'your friends' và 'they' đều đi với động từ to be là <b>are</b>."
+        },
+        {
+            id: "q3",
+            task: "Task 1 - Câu 3",
+            validAnswers: ["is she doing - is playing", "is doing - is playing", "is she doing/is playing", "is doing / is playing"],
+            displayAnswer: "is she doing - is playing",
+            explain: "Có trạng từ chỉ thời gian <b>now</b> (hiện tại) -> Dùng thì <b>Hiện tại tiếp diễn</b> (S + am/is/are + V-ing). Câu hỏi: <i>What is she doing now?</i> -> Trả lời: <i>She is playing table tennis.</i>"
+        },
+        {
+            id: "q4",
+            task: "Task 1 - Câu 4",
+            validAnswers: ["does your sister live - lives", "does live - lives", "does...live - lives", "does live / lives", "does live - lives"],
+            displayAnswer: "does (your sister) live - lives",
+            explain: "Thì <b>Hiện tại đơn</b> diễn tả thói quen/sự thật. Câu hỏi mượn trợ động từ <b>does</b> vì chủ ngữ 'your sister' là số ít -> <i>Where does your sister live?</i>. Trả lời động từ thêm 's': <i>She lives in the city.</i>"
+        },
+        {
+            id: "q5",
+            task: "Task 1 - Câu 5",
+            validAnswers: ["were - was", "were/was", "were, was", "were was"],
+            displayAnswer: "were - was",
+            explain: "Có trạng từ <b>last week</b> (tuần trước) -> Dùng thì <b>Quá khứ đơn</b> với To Be. Chủ ngữ 'you' đi với <b>were</b>, chủ ngữ 'I' đi với <b>was</b>."
+        },
+        // Task 2
+        {
+            id: "q6",
+            task: "Task 2 - Câu 1",
+            validAnswers: ["b", "does", "b - does", "b. does", "b (does)", "is"],
+            displayAnswer: "B (Sửa 'does' thành 'is')",
+            explain: "Hỏi về tính cách phải dùng động từ To Be: <i>What <b>is</b> he like?</i> chứ không dùng trợ động từ <i>does</i>."
+        },
+        {
+            id: "q7",
+            task: "Task 2 - Câu 2",
+            validAnswers: ["a", "does", "a - does", "a. does", "a (does)", "do"],
+            displayAnswer: "A (Sửa 'Does' thành 'Do')",
+            explain: "Chủ ngữ là <b>you</b> nên trợ động từ ở câu hỏi Hiện tại đơn phải là <b>Do</b> (<i>Do you have...?</i>)."
+        },
+        {
+            id: "q8",
+            task: "Task 2 - Câu 3",
+            validAnswers: ["b", "an", "b - an", "b. an", "b (an)", "a"],
+            displayAnswer: "B (Sửa 'an' thành 'a')",
+            explain: "Từ 'new' bắt đầu bằng một phụ âm (/n/) nên ta dùng mạo từ <b>a</b> (<i>a new pupil</i>) chứ không dùng <i>an</i>."
+        },
+        {
+            id: "q9",
+            task: "Task 2 - Câu 4",
+            validAnswers: ["b", "malaysian", "b - malaysian", "b. malaysian", "malaysia"],
+            displayAnswer: "B (Sửa 'Malaysian' thành 'Malaysia')",
+            explain: "Cấu trúc <b>from + Country (Tên quốc gia)</b>. Đứng sau 'from' phải là tên nước <b>Malaysia</b>, còn 'Malaysian' là quốc tịch."
+        },
+        {
+            id: "q10",
+            task: "Task 2 - Câu 5",
+            validAnswers: ["b", "friend", "b - friend", "b. friend", "friendly"],
+            displayAnswer: "B (Sửa 'friend' thành 'friendly')",
+            explain: "Đứng sau động từ To Be 'is' diễn tả tính cách phải dùng tính từ <b>friendly</b> (thân thiện), còn 'friend' là danh từ (bạn bè)."
+        }
+    ];
+
+    function cleanStr(str) {
+        return str.trim().toLowerCase().replace(/\s+/g, ' ').replace(/\.$/, '');
+    }
+
+    function checkQuiz() {
+        let correctCount = 0;
+        let total = quizData.length;
+        let explanationHTML = "";
+
+        quizData.forEach((item, index) => {
+            let inputElem = document.getElementById(item.id);
+            let userVal = cleanStr(inputElem.value);
+
+            // Kiểm tra đáp án
+            let isCorrect = item.validAnswers.some(ans => {
+                let cleanAns = cleanStr(ans);
+                return userVal === cleanAns || userVal.includes(cleanAns);
+            });
+
+            if (isCorrect && userVal !== "") {
+                correctCount++;
+                inputElem.className = "correct";
+            } else {
+                inputElem.className = "incorrect";
+                explanationHTML += `
+                    <div class="explain-box">
+                        <div class="explain-title">${item.task}: CHƯA CHÍNH XÁC</div>
+                        <div><b>Đáp án chuẩn:</b> <span class="correct-ans">${item.displayAnswer}</span></div>
+                        <div class="explain-detail"><b>Giải thích chi tiết:</b> ${item.explain}</div>
+                    </div>
+                `;
+            }
+        });
+
+        // Tính điểm thang 10
+        let score = (correctCount / total) * 10;
+
+        let scoreTextElem = document.getElementById("score-text");
+        let resultSection = document.getElementById("result-section");
+        let explanationContainer = document.getElementById("explanation-container");
+
+        scoreTextElem.innerHTML = `
+            Kết quả: <span style="color: #27ae60;">${correctCount}/${total}</span> câu đúng 
+            — <span style="color: #e67e22;">${score.toFixed(1)}/10 điểm</span>
+        `;
+
+        if (explanationHTML !== "") {
+            explanationContainer.innerHTML = `<h3 style="color:#c0392b; margin-top:0;">Chi tiết các câu làm chưa đúng:</h3>` + explanationHTML;
+        } else {
+            explanationContainer.innerHTML = `
+                <div style="text-align:center; color:#27ae60; font-weight:bold; font-size: 18px;">
+                    🎉 Xuất sắc! Bạn đã hoàn thành đúng 100% tất cả các câu hỏi!
+                </div>
+            `;
+        }
+
+        resultSection.style.display = "block";
+        resultSection.scrollIntoView({ behavior: 'smooth' });
+    }
+</script>
+
+</body>
+</html>
